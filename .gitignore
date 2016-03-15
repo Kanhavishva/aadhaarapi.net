@@ -1,0 +1,9 @@
+# Files
+*.suo
+*.user
+clean.bat
+project.lock.json
+
+# Folders
+.vs/
+artifacts/

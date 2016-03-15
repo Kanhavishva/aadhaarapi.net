@@ -1,0 +1,9 @@
+﻿<Test>
+  <!--
+  All attributes are optional.
+  
+  pc    = nnnnnn
+  -->
+  <Pa co="co" house="house" street="street" lm="lm" loc="loc" vtc="vtc" subdist="subdist" dist="dist" state="state" pc="999999" po="po" />
+  <Pa />
+</Test>

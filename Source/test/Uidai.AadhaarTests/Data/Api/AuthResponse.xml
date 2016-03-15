@@ -1,0 +1,8 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory, except actn.
+  
+  The err will actually be empty, when ret="y", but we can use it to make sure that err is set properly.
+  -->
+  <AuthRes code="RRRRRRRRRR" txn="Auth:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="999" ret="y" info="IIIIIIIIII" actn="AAAAAAAAAA" />
+</Test>

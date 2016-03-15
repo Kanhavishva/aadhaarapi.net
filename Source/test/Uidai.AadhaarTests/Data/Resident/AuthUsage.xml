@@ -1,0 +1,10 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory, except bt.
+  
+  bt is mandatory when bio="y".
+  bt is removed/ignored when bio="n".
+  -->
+  <Uses pi="y" pa="n" pfa="y" bio="y" otp="y" pin="y" bt="FMR,IIR" />
+  <Uses pi="y" pa="n" pfa="y" bio="n" otp="y" pin="y" />
+</Test>

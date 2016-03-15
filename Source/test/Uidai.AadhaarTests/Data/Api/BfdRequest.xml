@@ -1,0 +1,13 @@
+﻿<Test>
+  <!--
+  All attributes/elements are mandatory.
+
+  idc should be removed.
+  -->
+  <Bfd tid="public" ac="public" sa="public" txn="BFD:20150101000000000" lk="LLLLLLLLLL" uid="999999999999" ver="1.6">
+    <Meta udc="ABCDE.20150101.0001" fdc="F0001" pip="127.0.0.1" lot="G" lov="21,78,0" />
+    <Skey ci="20150101" ki="11111111-1111-1111-1111-111111111111">SSSSSSSSSS</Skey>
+    <Data type="X">XXXXXXXXXX</Data>
+    <Hmac>HHHHHHHHHH</Hmac>
+  </Bfd>
+</Test>

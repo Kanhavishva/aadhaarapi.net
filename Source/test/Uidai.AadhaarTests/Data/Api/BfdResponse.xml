@@ -1,0 +1,13 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory.
+  -->
+  <BfdRes code="RRRRRRRRRR" txn="BFD:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="" actn="AAAAAAAAAA" msg="MMMMMMMMMM">
+    <Ranks>
+      <Rank pos="LEFT_INDEX" val="1" />
+      <Rank pos="LEFT_MIDDLE" val="2" />
+      <Rank pos="LEFT_RING" val="3" />
+      <Rank pos="LEFT_LITTLE" val="4" />
+    </Ranks>
+  </BfdRes>
+</Test>

@@ -1,0 +1,8 @@
+﻿<Test>
+  <!--
+  All attributes/elements are mandatory.
+  -->
+  <Reset tid="registered" ac="public" sa="public" txn="Reset:20150101000000000" lk="LLLLLLLLLL" ver="1.5">
+    <Data>DDDDDDDDDD</Data>
+  </Reset>
+</Test>

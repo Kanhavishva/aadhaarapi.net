@@ -1,0 +1,6 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory.
+  -->
+  <Tkn type="001" value="9876543210" />
+</Test>

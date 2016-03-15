@@ -1,0 +1,7 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory, except info.
+  -->
+  <OtpRes code="RRRRRRRRRR" txn="OTP:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="" ret="y" info="IIIIIIIIII" />
+  <OtpRes code="RRRRRRRRRR" txn="OTP:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="999" ret="n" />
+</Test>

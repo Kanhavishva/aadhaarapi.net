@@ -1,0 +1,22 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory.
+  All elements are optional.
+  
+  One authentication data is mandatory.
+  FIR, FMR are mutually exclusive.
+  
+  ts   = yyyy-mm-ddThh:mm:ss
+  -->
+  <Pid ts="2015-01-01T00:00:00" ver="1.0">
+    <Demo lang="06">
+      <Pi name="name" lname="lname" phone="phone" email="email" gender="F" dob="2015-01-01" age="1" ms="P" mv="50" lmv="60" dobt="D" />
+      <Pfa av="av" lav="lav" ms="P" mv="50" lmv="60" />
+    </Demo>
+    <Bios>
+      <Bio type="FMR" posh="LEFT_INDEX">MMMMMMMMMM</Bio>
+      <Bio type="IIR" posh="LEFT_IRIS">IIIIIIIIII</Bio>
+    </Bios>
+    <Pv otp="012345" pin="456789" />
+  </Pid>
+</Test>

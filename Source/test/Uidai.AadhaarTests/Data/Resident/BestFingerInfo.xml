@@ -1,0 +1,13 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory.
+  
+  ts    = yyyy-mm-ddThh:mm:ss
+  Bios  = 1 - 10 fingers.
+  -->
+  <Rbd ts="2015-01-01T00:00:00" ver="1.0">
+    <Bios>
+      <Bio nfiq="1" na="3" pos="LEFT_INDEX">MMMMMMMMMM</Bio>
+    </Bios>
+  </Rbd>
+</Test>

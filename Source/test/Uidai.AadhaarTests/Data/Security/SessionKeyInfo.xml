@@ -1,0 +1,10 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory, except ki.
+  Data is mandatory.
+  
+  ci  = yyyymmdd
+  -->
+  <Skey ci="20150101" ki="11111111-1111-1111-1111-111111111111">SSSSSSSSSS</Skey>
+  <Skey ci="20150101">SSSSSSSSSS</Skey>
+</Test>

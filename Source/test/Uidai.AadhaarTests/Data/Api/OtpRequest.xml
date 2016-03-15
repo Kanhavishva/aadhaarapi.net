@@ -1,0 +1,13 @@
+﻿<Test>
+  <!--
+  All attributes/elements are mandatory, except type, Opts.
+  
+  type  = default(AadhaarNumber)
+  Opts  = default(SmsAndEmail)
+  -->
+  <Otp tid="public" ac="public" sa="public" txn="OTP:20150101000000000" lk="LLLLLLLLLL" uid="9876543210" ver="1.6" type="M"/>
+  <Otp tid="public" ac="public" sa="public" txn="OTP:20150101000000000" lk="LLLLLLLLLL" uid="999999999999" ver="1.6">
+    <Opts ch="01" />
+  </Otp>
+  <Otp tid="public" ac="public" sa="public" txn="OTP:20150101000000000" lk="LLLLLLLLLL" uid="999999999999" ver="1.6" />
+</Test>

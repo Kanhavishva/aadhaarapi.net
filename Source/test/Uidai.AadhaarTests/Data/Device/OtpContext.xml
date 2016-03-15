@@ -1,0 +1,14 @@
+﻿<Test>
+  <!--
+  All attributes/elements are mandatory, except type, Opts.
+  Opts is removed/ignored when type="M".
+  
+  type  = default(AadhaarNumber)
+  Opts  = default(SmsAndEmail)
+  -->
+  <Otp tid="public" uid="9876543210" type="M"/>
+  <Otp tid="public" uid="999999999999">
+    <Opts ch="01" />
+  </Otp>
+  <Otp tid="public" uid="999999999999" />
+</Test>

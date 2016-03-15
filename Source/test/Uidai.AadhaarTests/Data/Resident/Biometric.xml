@@ -1,0 +1,13 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory.
+  Data is mandatory.
+  
+  type, posh must tally with each other.
+  -->
+  <Bio type="FMR" posh="LEFT_INDEX">MMMMMMMMMM</Bio>
+  <Bio type="FIR" posh="LEFT_INDEX">FFFFFFFFFF</Bio>
+  <Bio type="IIR" posh="LEFT_IRIS">IIIIIIIIII</Bio>
+  <Bio type="FIR" posh="UNKNOWN">FFFFFFFFFF</Bio>
+  <Bio type="IIR" posh="UNKNOWN">IIIIIIIIII</Bio>
+</Test>

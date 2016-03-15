@@ -1,0 +1,20 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory.
+  
+  lot, lov must tally with each other.
+  
+  udc   = 1 - 20 characters
+  fdc   = 1 - 10 characters or NA/NC
+  idc   = 1 - 10 characters or NA/NC
+  udc   = 1 - 20 characters.
+  pip   = nnn.nnn.nnn.nnn or NA
+  lot   = G/P
+  lov   = nnnnnnnnnn.nnnn,nnnnnnnnnn.nnnn,nnnn.nn or nnnnnn
+  
+  lot   = default(GeoCoordinate)
+  lov   = 0,0,0
+  -->
+  <Meta udc="ABCDE.20150101.0001" fdc="F0001" idc="I0001" pip="127.0.0.1" lot="G" lov="21,78,0" />
+  <Meta udc="ABCDE.20150101.0001" fdc="F0001" idc="I0001" pip="NA" lot="P" lov="999999" />
+</Test>

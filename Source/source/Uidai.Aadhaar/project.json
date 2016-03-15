@@ -1,0 +1,36 @@
+﻿{
+    "title": "Aadhaar API for .NET",
+    "description": "A client library that provides an easy way to interact with the UIDAI Aadhaar services.\nTHIS IS AN UNOFFICIAL PACKAGE.",
+    "version": "0.8.0-beta",
+    "authors": [ "Souvik Dey Chowdhury" ],
+    "owners": [ "souvikdc" ],
+    "copyright": "Copyright © 2015 Souvik Dey Chowdhury",
+    "iconUrl": "https://cdn.rawgit.com/souvikdc9/aadhaarapi.net/master/Logo/NuGet.png",
+    "licenseUrl": "http://www.gnu.org/licenses/lgpl.txt",
+    "projectUrl": "http://souvikdc9.github.io/aadhaarapi.net",
+    "repository": { "url": "https://github.com/souvikdc9/aadhaarapi.net.git" },
+    "language": "en-IN",
+    "tags": [ "UIDAI", "Aadhaar", "Auth", "BFD", "OTP", "e-KYC", "DeviceReset" ],
+
+    "frameworks": {
+        "net46": {
+            "frameworkAssemblies": {
+                "System.Net.Http": "4.0.0.0",
+                "System.Security": "4.0.0.0",
+                "System.Xml": "4.0.0.0",
+                "System.Xml.Linq": "4.0.0.0"
+            }
+        },
+        "dotnet5.4": {
+            "dependencies": {
+                "Microsoft.CSharp": "4.0.1-*",
+                "System.Net.Http": "4.0.1-*",
+                "System.Net.Primitives": "4.0.11-*",
+                "System.Runtime": "4.0.21-*",
+                "System.Security.Cryptography.X509Certificates": "4.0.0-*",
+                "System.Threading.Tasks": "4.0.11-*",
+                "System.Xml.XDocument": "4.0.11-*"
+            }
+        }
+    }
+}

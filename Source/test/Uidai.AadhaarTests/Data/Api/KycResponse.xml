@@ -1,0 +1,28 @@
+﻿<Test>
+  <!--
+  All attributes/elements are mandatory.
+  -->
+  <KycRes code="RRRRRRRRRR" txn="UKC:KYC:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="" ret="y" actn="AAAAAAAAAA" ttl="2015-01-01T00:00:00+05:30">
+    <Rar>PEF1dGhSZXMgY29kZT0iUlJSUlJSUlJSUiIgdHhuPSJVS0M6S1lDOjIwMTUwMTAxMDAwMDAwMDAwIiB0cz0iMjAxNS0wMS0wMVQwMDowMDowMCswNTozMCIgZXJyPSIiIHJldD0ieSIgaW5mbz0iSUlJSUlJSUlJSSIgYWN0bj0iQUFBQUFBQUFBQSIgLz4=</Rar>
+    <UidData uid="999999999999">
+      <Poi name="name" phone="phone" email="email" gender="F" dob="2015-01-01" />
+      <Poa co="co" house="house" street="street" lm="lm" loc="loc" vtc="vtc" subdist="subdist" dist="dist" state="state" pc="999999" po="po" />
+      <LData co="co" house="house" street="street" lm="lm" loc="loc" vtc="vtc" subdist="subdist" dist="dist" state="state" pc="999999" po="po" lang="06" />
+      <Pht>UFBQUFBQUFBQUA==</Pht>
+    </UidData>
+  </KycRes>
+  <KycRes code="RRRRRRRRRR" txn="UKC:KYC:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="" ret="y" actn="AAAAAAAAAA" ttl="2015-01-01T00:00:00+05:30">
+    <Rar>PEF1dGhSZXMgY29kZT0iUlJSUlJSUlJSUiIgdHhuPSJVS0M6S1lDOjIwMTUwMTAxMDAwMDAwMDAwIiB0cz0iMjAxNS0wMS0wMVQwMDowMDowMCswNTozMCIgZXJyPSIiIHJldD0ieSIgaW5mbz0iSUlJSUlJSUlJSSIgYWN0bj0iQUFBQUFBQUFBQSIgLz4=</Rar>
+    <UidData uid="999999999999">
+      <Poi name="name" phone="phone" email="email" gender="F" dob="2015-01-01" />
+      <Poa co="co" house="house" street="street" lm="lm" loc="loc" vtc="vtc" subdist="subdist" dist="dist" state="state" pc="999999" po="po" />
+      <Pht>UFBQUFBQUFBQUA==</Pht>
+    </UidData>
+  </KycRes>
+  <Resp code="RRRRRRRRRR" txn="UKC:KYC:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="" ret="y" actn="AAAAAAAAAA" status="-1" ko="KUA" />
+</Test>
+<!--
+  Convert to Base64.
+  <AuthRes code="RRRRRRRRRR" txn="UKC:KYC:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="" ret="y" info="IIIIIIIIII" actn="AAAAAAAAAA" />
+  <Pht>PPPPPPPPPP</Pht>
+-->

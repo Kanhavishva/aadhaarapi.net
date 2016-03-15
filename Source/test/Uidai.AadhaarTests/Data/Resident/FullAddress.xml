@@ -1,0 +1,13 @@
+﻿<Test>
+  <!--
+  All attributes are optional.
+  
+  mv, lmv is mandatory when ms="P".
+  mv, lmv is removed/ignored when ms="E".
+    
+  ms      = default(Exact)
+  -->
+  <Pfa av="av" lav="lav" ms="P" mv="50" lmv="60" />
+  <Pfa av="av" lav="lav" />
+  <Pfa />
+</Test>

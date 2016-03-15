@@ -1,0 +1,11 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory.
+  Data is mandatory.
+  
+  nfiq    = 1 - 5
+  na      = >0
+  pos     = !(LEFT_IRIS, RIGHT_IRIS, UNKNOWN)
+  -->
+  <Bio nfiq="1" na="3" pos="LEFT_INDEX">MMMMMMMMMM</Bio>
+</Test>

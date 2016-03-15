@@ -1,0 +1,9 @@
+* text=auto
+
+*.cs diff=csharp
+
+*.cer binary
+*.p12 binary
+*.pdf binary
+*.png binary
+*.svg binary

@@ -1,0 +1,7 @@
+﻿<Test>
+  <!--
+  All attributes are mandatory.
+  Data is mandatory.
+  -->
+  <Data type="X">XXXXXXXXXX</Data>
+</Test>
