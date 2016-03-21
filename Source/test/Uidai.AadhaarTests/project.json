@@ -1,29 +1,29 @@
 ﻿{
-    "title": "Aadhaar API for .NET Tests",
-    "description": "Unit tests for Uidai.Aadhaar class library.",
-    "version": "0.1.0",
-    "authors": [ "Souvik Dey Chowdhury" ],
-    "owners": [ "souvikdc" ],
-    "copyright": "Copyright © 2015 Souvik Dey Chowdhury",
-    "licenseUrl": "http://www.gnu.org/licenses/lgpl.txt",
-    "projectUrl": "http://souvikdc9.github.io/aadhaarapi.net",
-    "repository": { "url": "https://github.com/souvikdc9/aadhaarapi.net.git" },
-    "language": "en-IN",
-    "tags": [ "UIDAI", "Aadhaar", "Tests" ],
+  "title": "Aadhaar API for .NET Tests",
+  "description": "Unit tests for Uidai.Aadhaar class library.",
+  "version": "0.1.0",
+  "authors": [ "Souvik Dey Chowdhury" ],
+  "owners": [ "souvikdc" ],
+  "copyright": "Copyright © 2015 Souvik Dey Chowdhury",
+  "licenseUrl": "http://www.gnu.org/licenses/lgpl.txt",
+  "projectUrl": "http://souvikdc9.github.io/aadhaarapi.net",
+  "repository": { "url": "https://github.com/souvikdc9/aadhaarapi.net.git" },
+  "language": "en-IN",
+  "tags": [ "UIDAI", "Aadhaar", "Tests" ],
 
-    "content": [ "Data", "Key" ],
+  "content": [ "Data", "Key" ],
 
-    "commands": {
-        "Test": "xunit.runner.dnx"
-    },
+  "commands": {
+    "Test": "xunit.runner.dnx"
+  },
 
-    "dependencies": {
-        "Uidai.Aadhaar": "0.8.0-*",
-        "xunit": "2.2.0-*",
-        "xunit.runner.dnx": "2.1.0-*"
-    },
+  "dependencies": {
+    "Uidai.Aadhaar": "0.8.0-*",
+    "xunit": "2.2.0-*",
+    "xunit.runner.dnx": "2.1.0-*"
+  },
 
-    "frameworks": {
-        "dnx46": { }
-    }
+  "frameworks": {
+    "dnx46": { }
+  }
 }

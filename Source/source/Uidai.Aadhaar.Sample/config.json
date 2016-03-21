@@ -1,27 +1,27 @@
 ﻿{
-    // Remove Agency Configurations at Device Level and Device Configurations at Agency Level.
+  // Remove Agency Configurations at Device Level and Device Configurations at Agency Level.
 
-    // Device Level
-    "DeviceInfo": {
-        "UniqueDeviceCode": "ABCDE.20150101.00001",
-        "FingerprintDeviceCode": "NC",
-        "IrisDeviceCode": "NC",
-        "Location": "21,78,0",
-        "LocationType": "GeoCoordinate"
-    },
-    "UIDAIEncryption": "Key/UidaiEncryptAndSign.cer",
+  // Device Level
+  "DeviceInfo": {
+    "UniqueDeviceCode": "ABCDE.20150101.00001",
+    "FingerprintDeviceCode": "NC",
+    "IrisDeviceCode": "NC",
+    "Location": "21,78,0",
+    "LocationType": "GeoCoordinate"
+  },
+  "UIDAIEncryption": "Key/UidaiEncryptAndSign.cer",
 
-    // Agency Level
-    "AgencyInfo": {
-        "AuaLicenseKey": "MKHmkuz-MgLYvA54PbwZdo9eC3D5y7SVozWwpNgEPysVqLs_aJgAVOI",
-        "AsaLicenseKey": "MLTbKYcsgYMq1zgL3WMZYrnyvsarlljxpom2A-QTPc0Zud23shpnqPk",
-        "AuaCode": "public",
-        "Hosts": {
-            "Auth": "http://auth.uidai.gov.in/1.6/",
-            "Bfd": "http://developer.uidai.gov.in/bfd/1.6/",
-            "Kyc": "http://developer.uidai.gov.in/kyc/1.0/",
-            "Otp": "http://developer.uidai.gov.in/uidotpserver/1.5/"
-        }
-    },
-    "UIDAIDigitalSignature": "Key/UidaiEncryptAndSign.cer"
+  // Agency Level
+  "AgencyInfo": {
+    "AuaLicenseKey": "MKHmkuz-MgLYvA54PbwZdo9eC3D5y7SVozWwpNgEPysVqLs_aJgAVOI",
+    "AsaLicenseKey": "MLTbKYcsgYMq1zgL3WMZYrnyvsarlljxpom2A-QTPc0Zud23shpnqPk",
+    "AuaCode": "public",
+    "Hosts": {
+      "Auth": "http://auth.uidai.gov.in/1.6/",
+      "Bfd": "http://developer.uidai.gov.in/bfd/1.6/",
+      "Kyc": "http://developer.uidai.gov.in/kyc/1.0/",
+      "Otp": "http://developer.uidai.gov.in/uidotpserver/1.5/"
+    }
+  },
+  "UIDAIDigitalSignature": "Key/UidaiEncryptAndSign.cer"
 }

@@ -1,31 +1,31 @@
 ﻿{
-    "title": "Aadhaar API for .NET Sample",
-    "description": "A sample for using the Uidai.Aadhaar class library.",
-    "version": "0.1.0",
-    "authors": [ "Souvik Dey Chowdhury" ],
-    "owners": [ "souvikdc" ],
-    "projectUrl": "http://souvikdc9.github.io/aadhaarapi.net",
-    "repository": { "url": "https://github.com/souvikdc9/aadhaarapi.net.git" },
-    "language": "en-IN",
-    "tags": [ "UIDAI", "Aadhaar", "Sample" ],
+  "title": "Aadhaar API for .NET Sample",
+  "description": "A sample for using the Uidai.Aadhaar class library.",
+  "version": "0.1.0",
+  "authors": [ "Souvik Dey Chowdhury" ],
+  "owners": [ "souvikdc" ],
+  "projectUrl": "http://souvikdc9.github.io/aadhaarapi.net",
+  "repository": { "url": "https://github.com/souvikdc9/aadhaarapi.net.git" },
+  "language": "en-IN",
+  "tags": [ "UIDAI", "Aadhaar", "Sample" ],
 
-    "content": [ "Key" ],
+  "content": [ "Key" ],
 
-    "commands": {
-        "Start": "Uidai.Aadhaar.Sample"
-    },
+  "commands": {
+    "Start": "Uidai.Aadhaar.Sample"
+  },
 
-    "compilationOptions": {
-        "emitEntryPoint": true
-    },
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
 
-    "dependencies": {
-        "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
-        "Microsoft.Extensions.OptionsModel": "1.0.0-*",
-        "Uidai.Aadhaar": "0.8.0-*"
-    },
+  "dependencies": {
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
+    "Microsoft.Extensions.OptionsModel": "1.0.0-*",
+    "Uidai.Aadhaar": "0.8.0-*"
+  },
 
-    "frameworks": {
-        "dnx46": { }
-    }
+  "frameworks": {
+    "dnx46": { }
+  }
 }
