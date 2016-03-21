@@ -22,7 +22,6 @@
 
 using System.Globalization;
 using System.Xml.Linq;
-using Uidai.Aadhaar.Api;
 using Uidai.Aadhaar.Helper;
 using static Uidai.Aadhaar.Internal.ExceptionHelper;
 

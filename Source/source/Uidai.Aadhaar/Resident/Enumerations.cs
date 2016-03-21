@@ -276,4 +276,15 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         Poor = 5
     }
+
+    /// <summary>
+    /// Specifies token type.
+    /// </summary>
+    public enum TokenType
+    {
+        /// <summary>
+        /// Indicates mobile number.
+        /// </summary>
+        MobileNumber = 1
+    }
 }
