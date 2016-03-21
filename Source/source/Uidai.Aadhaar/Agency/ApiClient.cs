@@ -117,10 +117,7 @@ namespace Uidai.Aadhaar.Agency
         /// When overridden in a descendant class, asynchronously sends a XML to a specified address and updates the <see cref="Response"/> property from a response XML.
         /// </summary>
         /// <returns>A task that represents the asynchronous retrieve operation.</returns>
-        protected virtual async Task RetrieveResponseAsync()
-        {
-            await GetResponseAsync(null, null);
-        }
+        protected virtual async Task RetrieveResponseAsync() => await GetResponseAsync(null, null);
 
         /// <summary>
         /// When overridden in a descendant class, asynchronously sends a XML to a specified address and gets a response XML.

@@ -58,19 +58,13 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="other">An object to compare with this object.</param>
         /// <returns>true if the current object is equal to the other parameter; otherwise, false.</returns>
-        public bool Equals(Biometric other)
-        {
-            return other != null && Type == other.Type && Position == other.Position;
-        }
+        public bool Equals(Biometric other) => other != null && Type == other.Type && Position == other.Position;
 
         /// <summary>
         /// Determines whether a particular resident data is used or not.
         /// </summary>
         /// <returns>true if the data is used; otherwise, false.</returns>
-        public bool IsUsed()
-        {
-            return !string.IsNullOrWhiteSpace(Data);
-        }
+        public bool IsUsed() => !string.IsNullOrWhiteSpace(Data);
 
         /// <summary>
         /// Deserializes the object from an XML according to Aadhaar API specification.
@@ -106,18 +100,12 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
         /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(object obj)
-        {
-            return obj != null && GetType() == obj.GetType() && Equals((Biometric)obj);
-        }
+        public override bool Equals(object obj) => obj != null && GetType() == obj.GetType() && Equals((Biometric)obj);
 
         /// <summary>
         /// Serves as the default hash function.
         /// </summary>
         /// <returns>A hash code for the current object.</returns>
-        public override int GetHashCode()
-        {
-            return Type.GetHashCode() ^ Position.GetHashCode();
-        }
+        public override int GetHashCode() => Type.GetHashCode() ^ Position.GetHashCode();
     }
 }

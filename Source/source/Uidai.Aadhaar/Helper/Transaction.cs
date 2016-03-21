@@ -96,9 +96,6 @@ namespace Uidai.Aadhaar.Helper
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
-        public override string ToString()
-        {
-            return this;
-        }
+        public override string ToString() => this;
     }
 }

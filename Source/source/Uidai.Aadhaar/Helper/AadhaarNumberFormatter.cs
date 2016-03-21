@@ -61,10 +61,7 @@ namespace Uidai.Aadhaar.Helper
         /// </summary>
         /// <param name="formatType">An object that specifies the type of format object to return.</param>
         /// <returns>An instance of the object specified by <paramref name="formatType"/>, if the <see cref="IFormatProvider"/> implementation can supply that type of object; otherwise, null.</returns>
-        public object GetFormat(Type formatType)
-        {
-            return formatType == typeof(ICustomFormatter) ? this : null;
-        }
+        public object GetFormat(Type formatType) => formatType == typeof(ICustomFormatter) ? this : null;
 
         private static string HandleOtherFormats(string format, object arg)
         {

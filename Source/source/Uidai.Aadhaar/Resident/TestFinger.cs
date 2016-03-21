@@ -71,10 +71,7 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="other">An object to compare with this object.</param>
         /// <returns>true if the current object is equal to the other parameter; otherwise, false.</returns>
-        public bool Equals(TestFinger other)
-        {
-            return other != null && Position == other.Position;
-        }
+        public bool Equals(TestFinger other) => other != null && Position == other.Position;
 
         /// <summary>
         /// Deserializes the object from an XML according to Aadhaar API specification.
@@ -110,18 +107,12 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
         /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(object obj)
-        {
-            return obj != null && GetType() == obj.GetType() && Equals((TestFinger)obj);
-        }
+        public override bool Equals(object obj) => obj != null && GetType() == obj.GetType() && Equals((TestFinger)obj);
 
         /// <summary>
         /// Serves as the default hash function.
         /// </summary>
         /// <returns>A hash code for the current object.</returns>
-        public override int GetHashCode()
-        {
-            return Position.GetHashCode();
-        }
+        public override int GetHashCode() => Position.GetHashCode();
     }
 }
