@@ -43,7 +43,7 @@ namespace Uidai.Aadhaar.Helper
             get { return generator; }
             set
             {
-                ValidateNull(generator, nameof(Generator));
+                ValidateNull(value, nameof(Generator));
                 generator = value;
             }
         }
