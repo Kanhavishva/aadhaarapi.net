@@ -10,7 +10,8 @@ namespace Uidai.Aadhaar.Sample
         public Configuration()
         {
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile("config.json").Build();
+                .AddJsonFile("aadhaar.json").Build();
+
             AgencyInfo = configuration.Get<UserAgency>("AgencyInfo");
             DeviceInfo = configuration.Get<Metadata>("DeviceInfo");
             UidaiEncryption = new X509Certificate2(configuration.Get<string>("UIDAIEncryption"));
