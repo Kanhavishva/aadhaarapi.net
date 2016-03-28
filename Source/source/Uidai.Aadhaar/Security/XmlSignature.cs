@@ -46,7 +46,7 @@ namespace Uidai.Aadhaar.Security
         public X509Certificate2 Signer { get; set; }
 
         /// <summary>
-        /// Gets or sets the X.509 certificate containing private key to sign the XML.
+        /// Gets or sets the X.509 certificate containing public key to verify the signed the XML.
         /// </summary>
         public X509Certificate2 Verifier { get; set; }
 

@@ -111,7 +111,7 @@ namespace Uidai.Aadhaar.Security
         /// Encrypts an input byte array and returns the encrypted array.
         /// </summary>
         /// <param name="dataToEncrypt">The data to encrypt.</param>
-        /// <returns>A byte array that contains the decrypted data.</returns>
+        /// <returns>A byte array that contains the encrypted data.</returns>
         public byte[] Encrypt(byte[] dataToEncrypt)
         {
             ValidateNull(dataToEncrypt, nameof(dataToEncrypt));

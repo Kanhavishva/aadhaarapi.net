@@ -53,7 +53,7 @@ namespace Uidai.Aadhaar.Resident
 
         /// <summary>
         /// Gets a collection of biometric types captured.
-        /// <see cref="AuthTypes.Biometric"/> flag must be set in <see cref="AuthUsed"/>, if collection is used; otherwise, ignored.
+        /// Collection cannot be empty if <see cref="AuthTypes.Biometric"/> flag is set in <see cref="AuthUsed"/>.
         /// </summary>
         public ICollection<BiometricType> Biometrics { get; } = new HashSet<BiometricType>();
 
