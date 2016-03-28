@@ -62,7 +62,7 @@ namespace Uidai.Aadhaar.Security
             ValidateNull(xml, nameof(xml));
             ValidateNull(Signer, nameof(Signer));
             if (!Signer.HasPrivateKey)
-                throw new NotSupportedException(NoPrivateKey);
+                throw new CryptographicException(NoPrivateKey);
 
             var signedXml = new SignedXml(GetXmlDocument(xml)) { SigningKey = Signer.PrivateKey };
 
