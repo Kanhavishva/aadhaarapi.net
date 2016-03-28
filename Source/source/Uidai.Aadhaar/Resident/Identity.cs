@@ -146,9 +146,8 @@ namespace Uidai.Aadhaar.Resident
 
         /// <summary>
         /// Gets or sets the date of birth type specified during registration.
-        /// Default is <see cref="DateOfBirthType.Declared"/>.
         /// </summary>
-        public DateOfBirthType DoBType { get; set; } = DateOfBirthType.Declared;
+        public DateOfBirthType? DoBType { get; set; }
 
         /// <summary>
         /// Gets or sets a value that indicates whether to verify only birth year.
@@ -205,9 +204,7 @@ namespace Uidai.Aadhaar.Resident
             }
             else
                 NameMatchPercent = ILNameMatchPercent = AadhaarHelper.MaxMatchPercent;
-
-            value = element.Attribute("dobt")?.Value;
-            DoBType = value != null && (DateOfBirth != null || Age != 0) ? (DateOfBirthType)value[0] : DateOfBirthType.Declared;
+            DoBType = (DateOfBirthType?)element.Attribute("dobt")?.Value[0];
         }
 
         /// <summary>
@@ -235,7 +232,7 @@ namespace Uidai.Aadhaar.Resident
                     new XAttribute("mv", NameMatchPercent),
                     new XAttribute("lmv", ILNameMatchPercent));
             }
-            if (DateOfBirth != null || Age != 0)
+            if (DoBType != null && (DateOfBirth != null || Age != 0))
                 identity.Add(new XAttribute("dobt", (char)DoBType));
 
             identity.RemoveEmptyAttributes();

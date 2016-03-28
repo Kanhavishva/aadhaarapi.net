@@ -14,10 +14,10 @@
   gender  = default(null)
   age     = default(0)
   dob     = default(null)
-  dobt    = default(Declared)
+  dobt    = default(null)
   -->
   <Pi name="name" lname="lname" phone="phone" email="email" gender="F" dob="2015-01-01" age="1" ms="P" mv="50" lmv="60" dobt="D" />
-  <Pi name="name" lname="lname" phone="phone" email="email" gender="F" dob="2015" age="1" dobt="D" />
+  <Pi name="name" lname="lname" phone="phone" email="email" gender="F" dob="2015" age="1" />
   <Pi name="name" lname="lname" phone="phone" email="email" />
   <Pi />
 </Test>
