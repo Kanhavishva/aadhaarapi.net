@@ -1,7 +1,6 @@
 ﻿{
-  // Remove Agency Configurations at Device Level and Device Configurations at Agency Level.
+  "_comment": "Remove Agency Configurations at Device Level and Device Configurations at Agency Level.",
 
-  // Device Level
   "DeviceInfo": {
     "UniqueDeviceCode": "ABCDE.20150101.00001",
     "FingerprintDeviceCode": "NC",
@@ -11,7 +10,6 @@
   },
   "UIDAIEncryption": "Key/UidaiEncryptAndSign.cer",
 
-  // Agency Level
   "AgencyInfo": {
     "AuaLicenseKey": "MKHmkuz-MgLYvA54PbwZdo9eC3D5y7SVozWwpNgEPysVqLs_aJgAVOI",
     "AsaLicenseKey": "MLTbKYcsgYMq1zgL3WMZYrnyvsarlljxpom2A-QTPc0Zud23shpnqPk",
