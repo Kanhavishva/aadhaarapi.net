@@ -19,8 +19,7 @@ var personalInfo = new PersonalInfo
             DateOfBirth = new DateTime(1968, 5, 13, 0, 0, 0),
             Gender = Gender.Male,
             Phone = "2810806979",
-            Email = "sschoudhury@dummyemail.com",
-            DoBType = DateOfBirthType.Verified
+            Email = "sschoudhury@dummyemail.com"
         },
         Address = new Address
         {
