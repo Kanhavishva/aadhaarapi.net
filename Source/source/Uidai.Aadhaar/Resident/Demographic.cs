@@ -101,7 +101,7 @@ namespace Uidai.Aadhaar.Resident
         /// <returns>An instance of <see cref="XElement"/>.</returns>
         public XElement ToXml(string elementName)
         {
-            var isILUsed = !(string.IsNullOrWhiteSpace(Identity?.ILName) || string.IsNullOrWhiteSpace(FullAddress?.ILAddress));
+            var isILUsed = !(string.IsNullOrWhiteSpace(Identity?.ILName) && string.IsNullOrWhiteSpace(FullAddress?.ILAddress));
 
             if (LanguageUsed == null && isILUsed)
                 throw new ArgumentException(RequiredIndianLanguage, nameof(LanguageUsed));
