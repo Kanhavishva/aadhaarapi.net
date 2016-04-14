@@ -114,21 +114,25 @@ namespace Uidai.AadhaarTests.Resident
             // Set: All
             Assert.True(XNode.DeepEquals(xml[0], identity.ToXml("Pi")));
 
+            // Remove: ILName
+            identity.ILName = null;
+            Assert.True(XNode.DeepEquals(xml[1], identity.ToXml("Pi")));
+
             // Set: Match = Exact, VerifyOnlyBirthYear = true, Remove: DoBType
             identity.Match = MatchingStrategy.Exact;
             identity.VerifyOnlyBirthYear = true;
             identity.DoBType = null;
-            Assert.True(XNode.DeepEquals(xml[1], identity.ToXml("Pi")));
+            Assert.True(XNode.DeepEquals(xml[2], identity.ToXml("Pi")));
 
             // Remove: Age, DateOfBirth, Gender
             identity.Age = 0;
             identity.DateOfBirth = null;
             identity.Gender = null;
-            Assert.True(XNode.DeepEquals(xml[2], identity.ToXml("Pi")));
+            Assert.True(XNode.DeepEquals(xml[3], identity.ToXml("Pi")));
 
             // Remove: All
             identity.Name = identity.ILName = identity.Phone = identity.Email = null;
-            Assert.True(XNode.DeepEquals(xml[3], identity.ToXml("Pi")));
+            Assert.True(XNode.DeepEquals(xml[4], identity.ToXml("Pi")));
         }
     }
 }

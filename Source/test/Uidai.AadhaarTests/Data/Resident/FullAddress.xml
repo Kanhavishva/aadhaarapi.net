@@ -8,6 +8,7 @@
   ms      = default(Exact)
   -->
   <Pfa av="av" lav="lav" ms="P" mv="50" lmv="60" />
+  <Pfa av="av" ms="P" mv="50" lmv="60" />
   <Pfa av="av" lav="lav" />
   <Pfa />
 </Test>

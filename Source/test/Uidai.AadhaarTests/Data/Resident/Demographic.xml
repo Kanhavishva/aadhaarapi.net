@@ -12,6 +12,10 @@
     <Pi name="name" lname="lname" phone="phone" email="email" gender="F" dob="2015-01-01" age="1" ms="P" mv="50" lmv="60" dobt="D" />
     <Pfa av="av" lav="lav" ms="P" mv="50" lmv="60" />
   </Demo>
+  <Demo lang="06">
+    <Pi name="name" lname="lname" phone="phone" email="email" gender="F" dob="2015-01-01" age="1" ms="P" mv="50" lmv="60" dobt="D" />
+    <Pfa av="av" ms="P" mv="50" lmv="60" />
+  </Demo>
   <Demo>
     <Pi name="name" phone="phone" email="email" gender="F" dob="2015-01-01" age="1" ms="P" mv="50" lmv="60" dobt="D" />
     <Pa co="co" house="house" street="street" lm="lm" loc="loc" vtc="vtc" subdist="subdist" dist="dist" state="state" pc="999999" po="po" />

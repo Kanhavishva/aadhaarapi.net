@@ -60,24 +60,28 @@ namespace Uidai.AadhaarTests.Resident
             // Set: All
             Assert.True(XNode.DeepEquals(xml[0], demographic.ToXml("Demo")));
 
-            // Set: Address
-            demographic.Address = Data.Address;
-            Assert.Throws<ArgumentException>(() => demographic.ToXml("Demo"));
+            // Remove: FullAddress.ILAddress
+            demographic.FullAddress.ILAddress = null;
+            Assert.True(XNode.DeepEquals(xml[1], demographic.ToXml("Demo")));
 
             // Remove: LanguageUsed
             demographic.LanguageUsed = null;
             Assert.Throws<ArgumentException>(nameof(Demographic.LanguageUsed), () => demographic.ToXml("Demo"));
 
+            // Set: Address
+            demographic.Address = Data.Address;
+            Assert.Throws<ArgumentException>(() => demographic.ToXml("Demo"));
+
             // Set: LanguageUsed | Remove: FullAddress, Identity.ILName
             demographic.LanguageUsed = Data.Demographic.LanguageUsed;
             demographic.FullAddress = null;
             demographic.Identity.ILName = null;
-            Assert.True(XNode.DeepEquals(xml[1], demographic.ToXml("Demo")));
+            Assert.True(XNode.DeepEquals(xml[2], demographic.ToXml("Demo")));
 
             // Remove: All
             demographic.Address = null;
             demographic.Identity = null;
-            Assert.True(XNode.DeepEquals(xml[2], demographic.ToXml("Demo")));
+            Assert.True(XNode.DeepEquals(xml[3], demographic.ToXml("Demo")));
         }
     }
 }

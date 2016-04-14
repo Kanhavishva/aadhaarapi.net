@@ -68,13 +68,18 @@ namespace Uidai.AadhaarTests.Resident
             // Set: All
             Assert.True(XNode.DeepEquals(xml[0], fullAddress.ToXml("Pfa")));
 
-            // Set: Match = Exact
-            fullAddress.Match = MatchingStrategy.Exact;
+            // Remove: ILAddress
+            fullAddress.ILAddress = null;
             Assert.True(XNode.DeepEquals(xml[1], fullAddress.ToXml("Pfa")));
+
+            // Set: ILAddress, Match = Exact
+            fullAddress.ILAddress = "lav";
+            fullAddress.Match = MatchingStrategy.Exact;
+            Assert.True(XNode.DeepEquals(xml[2], fullAddress.ToXml("Pfa")));
 
             // Remove: All
             fullAddress.Address = fullAddress.ILAddress = null;
-            Assert.True(XNode.DeepEquals(xml[2], fullAddress.ToXml("Pfa")));
+            Assert.True(XNode.DeepEquals(xml[3], fullAddress.ToXml("Pfa")));
         }
     }
 }
