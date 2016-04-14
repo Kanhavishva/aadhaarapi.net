@@ -123,7 +123,7 @@ namespace Uidai.Aadhaar.Resident
             var fullAddress = new XElement(elementName,
                 new XAttribute("av", Address ?? string.Empty),
                 new XAttribute("lav", ILAddress ?? string.Empty));
-            if (Match == MatchingStrategy.Partial && (!string.IsNullOrWhiteSpace(Address) || !string.IsNullOrWhiteSpace(ILAddress)))
+            if (Match == MatchingStrategy.Partial && !(string.IsNullOrWhiteSpace(Address) && string.IsNullOrWhiteSpace(ILAddress)))
                 fullAddress.Add(new XAttribute("ms", (char)Match),
                     new XAttribute("mv", MatchPercent),
                     new XAttribute("lmv", ILMatchPercent));

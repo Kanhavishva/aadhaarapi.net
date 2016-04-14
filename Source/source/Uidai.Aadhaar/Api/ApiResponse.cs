@@ -87,7 +87,7 @@ namespace Uidai.Aadhaar.Api
         {
             ValidateNull(element, nameof(element));
 
-            if (!Verifier?.VerifySignature(element) == true)
+            if (Verifier?.VerifySignature(element) == false)
                 throw new CryptographicException(InvalidSignature);
 
             ResponseCode = element.Attribute("code").Value;

@@ -226,7 +226,7 @@ namespace Uidai.Aadhaar.Resident
             if (Age != 0)
                 identity.Add(new XAttribute("age", Age));
 
-            if (Match == MatchingStrategy.Partial && (!string.IsNullOrWhiteSpace(Name) || !string.IsNullOrWhiteSpace(ILName)))
+            if (Match == MatchingStrategy.Partial && !(string.IsNullOrWhiteSpace(Name) && string.IsNullOrWhiteSpace(ILName)))
             {
                 identity.Add(new XAttribute("ms", (char)Match),
                     new XAttribute("mv", NameMatchPercent),
