@@ -203,7 +203,9 @@ namespace Uidai.Aadhaar.Helper
 
             var encodedAsaLicenseKey = WebUtility.UrlEncode(agencyInfo.AsaLicenseKey) ?? string.Empty;
 
-            return string.IsNullOrWhiteSpace(aadhaarNumber) ? new Uri(host, $"{agencyInfo.AuaCode}/{encodedAsaLicenseKey}") : new Uri(host, $"{agencyInfo.AuaCode}/{aadhaarNumber[0]}/{aadhaarNumber[1]}/{encodedAsaLicenseKey}");
+            return string.IsNullOrWhiteSpace(aadhaarNumber) ?
+                new Uri(host, $"{agencyInfo.AuaCode}/{encodedAsaLicenseKey}") :
+                new Uri(host, $"{agencyInfo.AuaCode}/{aadhaarNumber[0]}/{aadhaarNumber[1]}/{encodedAsaLicenseKey}");
         }
     }
 }
