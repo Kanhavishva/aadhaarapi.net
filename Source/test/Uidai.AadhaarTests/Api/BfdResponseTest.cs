@@ -59,6 +59,10 @@ namespace Uidai.AadhaarTests.Api
 
             // Set: All
             Assert.True(XNode.DeepEquals(xml[0], bfdResponse.ToXml("BfdRes")));
+
+            // Remove: Fingers
+            bfdResponse.Ranks.Clear();
+            Assert.True(XNode.DeepEquals(xml[1], bfdResponse.ToXml("BfdRes")));
         }
     }
 }

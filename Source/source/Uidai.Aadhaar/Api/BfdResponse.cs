@@ -60,6 +60,7 @@ namespace Uidai.Aadhaar.Api
             base.DeserializeXml(element);
             ActionCode = element.Attribute("actn").Value;
             Message = element.Attribute("msg").Value;
+            Ranks.Clear();
             foreach (var rank in element.Element("Ranks").Elements())
             {
                 var value = int.Parse(rank.Attribute("val").Value, CultureInfo.InvariantCulture);
@@ -83,13 +84,11 @@ namespace Uidai.Aadhaar.Api
             var bfdResponse = base.SerializeXml(elementName);
             bfdResponse.Add(new XAttribute("actn", ActionCode),
                 new XAttribute("msg", Message));
+            var ranks = new XElement("Ranks");
             if (Ranks.Count > 0)
-            {
-                var ranks = new XElement("Ranks");
                 foreach (var rank in Ranks)
                     ranks.Add(new XElement("Rank", new XAttribute("pos", Biometric.BiometricPositionNames[(int)rank.Value]), new XAttribute("val", rank.Key)));
-                bfdResponse.Add(ranks);
-            }
+            bfdResponse.Add(ranks);
 
             return bfdResponse;
         }

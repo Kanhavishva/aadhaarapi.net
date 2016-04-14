@@ -10,4 +10,7 @@
       <Rank pos="LEFT_LITTLE" val="4" />
     </Ranks>
   </BfdRes>
+  <BfdRes code="RRRRRRRRRR" txn="BFD:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="" actn="AAAAAAAAAA" msg="MMMMMMMMMM">
+    <Ranks />
+  </BfdRes>
 </Test>
