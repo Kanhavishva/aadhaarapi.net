@@ -11,8 +11,8 @@
   "UIDAIEncryption": "Key/UidaiEncryptAndSign.cer",
 
   "AgencyInfo": {
-    "AuaLicenseKey": "MKHmkuz-MgLYvA54PbwZdo9eC3D5y7SVozWwpNgEPysVqLs_aJgAVOI",
-    "AsaLicenseKey": "MLTbKYcsgYMq1zgL3WMZYrnyvsarlljxpom2A-QTPc0Zud23shpnqPk",
+    "AuaLicenseKey": "MBFWjkJHNF-fLidl8oOHtUwgL5p1ZjDbWrqsMEVEJLVEDpnlNj_CZTg",
+    "AsaLicenseKey": "MH4hSkrev2h_Feu0lBRC8NI-iqzT299_qPSSstOFbNFTwWrie29ThDo",
     "AuaCode": "public",
     "Hosts": {
       "Auth": "http://auth.uidai.gov.in/1.6/",
