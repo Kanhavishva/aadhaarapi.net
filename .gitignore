@@ -1,7 +1,7 @@
 # Files
 *.suo
 *.user
-clean.bat
+.clean.bat
 project.lock.json
 
 # Folders
