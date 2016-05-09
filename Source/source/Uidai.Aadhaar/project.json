@@ -1,7 +1,7 @@
 ﻿{
   "title": "Aadhaar API for .NET",
   "description": "A client library that provides an easy way to interact with the UIDAI Aadhaar services.\nTHIS IS AN UNOFFICIAL PACKAGE.",
-  "version": "0.8.0-beta",
+  "version": "0.8.1-beta",
   "authors": [ "Souvik Dey Chowdhury" ],
   "owners": [ "souvikdc" ],
   "copyright": "Copyright © 2015 Souvik Dey Chowdhury",
