@@ -34,6 +34,8 @@ namespace Uidai.Aadhaar.Agency
     /// <summary>
     /// Provides a wrapper to send a request and retrieve a response from CIDR servers.
     /// </summary>
+    /// <typeparam name="TRequest">The type of the request to send.</typeparam>
+    /// <typeparam name="TResponse">The type of the response to send.</typeparam>
     public class ApiClient<TRequest, TResponse> where TRequest : ApiRequest where TResponse : ApiResponse
     {
         /// <summary>
