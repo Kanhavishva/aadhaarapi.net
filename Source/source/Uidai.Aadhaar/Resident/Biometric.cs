@@ -30,7 +30,7 @@ namespace Uidai.Aadhaar.Resident
 {
     /// <summary>
     /// Represents biometric data of a resident.
-    /// Biometric data should never be should never be stored anywhere.
+    /// Biometric data should never be stored anywhere.
     /// </summary>
     public class Biometric : IEquatable<Biometric>, IUsed, IXml
     {

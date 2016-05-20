@@ -63,9 +63,9 @@ namespace Uidai.Aadhaar.Resident
         }
 
         /// <summary>
-        /// Serializes the object into XML.
+        /// Serializes the object into XML according to Aadhaar API specification.
         /// </summary>
-        /// <param name="elementName">The name of the parent element.</param>
+        /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
         public XElement ToXml(string elementName)
         {
