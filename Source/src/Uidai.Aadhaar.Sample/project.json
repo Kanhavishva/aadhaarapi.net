@@ -14,7 +14,7 @@
   },
 
   "buildOptions": {
-    "copyToOutput": [ "Key", "aadhaar.json" ],
+    "copyToOutput": [ "Key/**", "aadhaar.json" ],
     "emitEntryPoint": true
   },
 
