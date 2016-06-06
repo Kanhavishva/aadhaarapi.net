@@ -1,0 +1,41 @@
+﻿{
+  "title": "Aadhaar API for .NET Tests",
+  "description": "Unit tests for Uidai.Aadhaar class library.",
+  "version": "0.1.0",
+  "authors": [ "Souvik Dey Chowdhury" ],
+  "copyright": "Copyright © 2015 Souvik Dey Chowdhury",
+
+  "buildOptions": {
+    "copyToOutput": [ "Data", "Key" ]
+  },
+
+  "packOptions": {
+    "summary": "Unit tests for Uidai.Aadhaar class library.",
+    "tags": [ "UIDAI", "Aadhaar", "Tests" ],
+    "owners": [ "souvikdc" ],
+    "iconUrl": "https://cdn.rawgit.com/souvikdc9/aadhaarapi.net/master/Logo/NuGet.png",
+    "licenseUrl": "http://www.gnu.org/licenses/lgpl.html",
+    "projectUrl": "http://souvikdc9.github.io/aadhaarapi.net",
+    "repository": { "url": "https://github.com/souvikdc9/aadhaarapi.net.git" }
+  },
+
+  "testRunner": "xunit",
+
+  "dependencies": {
+    "xunit": "2.2.0-*",
+    "dotnet-test-xunit": "1.0.0-*",
+    "Uidai.Aadhaar": "0.8.2-*"
+  },
+  "frameworks": {
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0-*"
+        }
+      },
+      "imports": [ "dnx46" ]
+    },
+    "net46": { }
+  }
+}

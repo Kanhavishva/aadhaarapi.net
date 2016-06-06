@@ -24,7 +24,7 @@ namespace Uidai.Aadhaar.Sample
 
         public Metadata DeviceInfo { get; set; }
 
-        public X509Certificate2 AuaKey { get; set; } = new X509Certificate2(@"Key\AuaKey.p12", "public");
+        public X509Certificate2 AuaKey { get; set; } = new X509Certificate2(@"Key\AuaSign.p12", "public");
 
         public X509Certificate2 UidaiEncryption { get; set; }
 

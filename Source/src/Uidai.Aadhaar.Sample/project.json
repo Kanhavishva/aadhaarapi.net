@@ -1,0 +1,30 @@
+﻿{
+  "title": "Aadhaar API for .NET Sample",
+  "description": "A sample for using the Uidai.Aadhaar class library.",
+  "version": "0.1.0",
+  "authors": [ "Souvik Dey Chowdhury" ],
+
+  "packOptions": {
+    "summary": "A sample for using the Uidai.Aadhaar class library.",
+    "owners": [ "souvikdc" ],
+    "iconUrl": "https://cdn.rawgit.com/souvikdc9/aadhaarapi.net/master/Logo/NuGet.png",
+    "projectUrl": "http://souvikdc9.github.io/aadhaarapi.net",
+    "repository": { "url": "https://github.com/souvikdc9/aadhaarapi.net.git" },
+    "tags": [ "UIDAI", "Aadhaar", "Sample" ]
+  },
+
+  "buildOptions": {
+    "copyToOutput": [ "Key", "aadhaar.json" ],
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
+    "Microsoft.Extensions.OptionsModel": "1.0.0-*",
+    "Uidai.Aadhaar": "0.8.2-*"
+  },
+
+  "frameworks": {
+    "net46": { }
+  }
+}
