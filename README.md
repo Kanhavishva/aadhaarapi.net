@@ -1,4 +1,6 @@
 ﻿# Aadhaar API for .NET
+
+[![Join the chat at https://gitter.im/souvikdc9/aadhaarapi.net](https://badges.gitter.im/souvikdc9/aadhaarapi.net.svg)](https://gitter.im/souvikdc9/aadhaarapi.net?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Aadhaar API for .NET is a client library that provides an easy way to interact with the UIDAI Aadhaar services.
 
 [Download NuGet Package](https://www.nuget.org/packages/Uidai.Aadhaar/)
