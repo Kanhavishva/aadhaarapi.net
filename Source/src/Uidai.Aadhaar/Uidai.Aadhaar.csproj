@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F3B44FDF-7B33-4BF7-90A1-EE2F90A04023}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>Uidai.Aadhaar</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Uidai.Aadhaar</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6\System.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Agency\ApiClient.cs" />
+    <Compile Include="Agency\AuthClient.cs" />
+    <Compile Include="Agency\BfdClient.cs" />
+    <Compile Include="Agency\DeviceResetClient.cs" />
+    <Compile Include="Agency\KycClient.cs" />
+    <Compile Include="Agency\OtpClient.cs" />
+    <Compile Include="Agency\UserAgency.cs" />
+    <Compile Include="Api\ApiException.cs" />
+    <Compile Include="Api\ApiRequest.cs" />
+    <Compile Include="Api\ApiResponse.cs" />
+    <Compile Include="Api\AuthRequest.cs" />
+    <Compile Include="Api\AuthResponse.cs" />
+    <Compile Include="Api\BfdRequest.cs" />
+    <Compile Include="Api\BfdResponse.cs" />
+    <Compile Include="Api\DeviceResetRequest.cs" />
+    <Compile Include="Api\DeviceResetResponse.cs" />
+    <Compile Include="Api\KycRequest.cs" />
+    <Compile Include="Api\KycResponse.cs" />
+    <Compile Include="Api\OtpRequest.cs" />
+    <Compile Include="Api\OtpResponse.cs" />
+    <Compile Include="Device\AuthContext.cs" />
+    <Compile Include="Device\BfdContext.cs" />
+    <Compile Include="Device\DeviceContext.cs" />
+    <Compile Include="Device\EncryptedData.cs" />
+    <Compile Include="Device\Enumerations.cs" />
+    <Compile Include="Device\KycContext.cs" />
+    <Compile Include="Device\Metadata.cs" />
+    <Compile Include="Device\OtpContext.cs" />
+    <Compile Include="Helper\AadhaarHelper.cs" />
+    <Compile Include="Helper\AadhaarNumberFormatter.cs" />
+    <Compile Include="Helper\AuthInfo.cs" />
+    <Compile Include="Helper\IUsed.cs" />
+    <Compile Include="Helper\IXml.cs" />
+    <Compile Include="Helper\OtpInfo.cs" />
+    <Compile Include="Helper\Transaction.cs" />
+    <Compile Include="Internal\ErrorMessage.cs" />
+    <Compile Include="Internal\ExceptionHelper.cs" />
+    <Compile Include="Resident\Address.cs" />
+    <Compile Include="Resident\AuthUsage.cs" />
+    <Compile Include="Resident\BestFingerInfo.cs" />
+    <Compile Include="Resident\Biometric.cs" />
+    <Compile Include="Resident\Demographic.cs" />
+    <Compile Include="Resident\Enumerations.cs" />
+    <Compile Include="Resident\FullAddress.cs" />
+    <Compile Include="Resident\Identity.cs" />
+    <Compile Include="Resident\PersonalInfo.cs" />
+    <Compile Include="Resident\PinValue.cs" />
+    <Compile Include="Resident\TestFinger.cs" />
+    <Compile Include="Resident\Token.cs" />
+    <Compile Include="Security\IDecrypter.cs" />
+    <Compile Include="Security\ISigner.cs" />
+    <Compile Include="Security\IVerifier.cs" />
+    <Compile Include="Security\KycDecrypter.cs" />
+    <Compile Include="Security\SessionKey.cs" />
+    <Compile Include="Security\SessionKeyInfo.cs" />
+    <Compile Include="Security\XmlSignature.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>

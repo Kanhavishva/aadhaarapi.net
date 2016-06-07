@@ -1,0 +1,31 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [ "**/**/Uidai.Aadhaar.csproj" ],
+          "exclude": [ "**/obj/**", "**/bin/**" ],
+          "src": ".."
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "api/**.yml", "api/index.md" ]
+      },
+      {
+        "files": [ "toc.yml", "*.md" ]
+      }
+    ],
+    "globalMetadata": {
+      "_appTitle": "Aadhaar API for .NET",
+      "_description": "Aadhaar API for .NET is a client library that provides an easy way to interact with the UIDAI Aadhaar services.",
+      "_appFooter": "Copyright (C) 2015 Souvik Dey Chowdhury<br>Licensed under GNU Lesser General Public License v3 or later"
+    },
+    "dest": "_site",
+    "template": [ "default" ]
+  }
+}
