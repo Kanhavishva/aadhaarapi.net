@@ -20,6 +20,7 @@
  ********************************************************************************/
 #endregion
 
+using System;
 using System.Xml.Linq;
 using Uidai.Aadhaar.Helper;
 using static Uidai.Aadhaar.Internal.ExceptionHelper;
@@ -29,17 +30,20 @@ namespace Uidai.Aadhaar.Api
     /// <summary>
     /// Represents a registered device reset response.
     /// </summary>
+    [Obsolete]
     public class DeviceResetResponse : ApiResponse
     {
         /// <summary>
         /// Gets or sets a value that indicates whether the device reset is successful.
         /// </summary>
+        /// <value>A value that indicates whether the device reset is successful.</value>
         public bool IsReset { get; set; }
 
         /// <summary>
         /// Gets or sets the device response code.
         /// The value must be passed to registered devices for decrypting and storing the content.
         /// </summary>
+        /// <value>The device response code.</value>
         public string DeviceCode { get; set; }
 
         /// <summary>
@@ -58,6 +62,7 @@ namespace Uidai.Aadhaar.Api
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="System.ArgumentException"><see cref="DeviceCode"/> is empty.</exception>
         protected override XElement SerializeXml(string elementName)
         {
             ValidateEmptyString(DeviceCode, nameof(DeviceCode));

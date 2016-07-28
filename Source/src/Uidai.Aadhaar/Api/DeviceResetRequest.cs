@@ -20,6 +20,7 @@
  ********************************************************************************/
 #endregion
 
+using System;
 using System.Xml.Linq;
 using static Uidai.Aadhaar.Internal.ExceptionHelper;
 
@@ -28,21 +29,25 @@ namespace Uidai.Aadhaar.Api
     /// <summary>
     /// Represents a registered device reset request.
     /// </summary>
+    [Obsolete]
     public class DeviceResetRequest : ApiRequest
     {
         /// <summary>
         /// Represents the Reset version. This field is read-only.
         /// </summary>
+        /// <value>The Reset version.</value>
         public static readonly string ResetVersion = "1.5";
 
         /// <summary>
         /// Gets the name of the API. The name is usually the XML root name sent in request.
         /// </summary>
+        /// <value>Rhe name of the API.</value>
         public override string ApiName => "Reset";
 
         /// <summary>
         /// Gets or sets the encrypted input block in base64 format.
         /// </summary>
+        /// <value>The encrypted input block in base64 format.</value>
         public string Data { get; set; }
 
         /// <summary>
@@ -60,6 +65,7 @@ namespace Uidai.Aadhaar.Api
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="System.ArgumentException"><see cref="Data"/> is empty.</exception>
         protected override XElement SerializeXml(string elementName)
         {
             ValidateEmptyString(Data, nameof(Data));

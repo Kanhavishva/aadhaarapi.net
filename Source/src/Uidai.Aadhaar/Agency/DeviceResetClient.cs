@@ -20,26 +20,16 @@
  ********************************************************************************/
 #endregion
 
+using System;
 using Uidai.Aadhaar.Api;
-using Uidai.Aadhaar.Helper;
-using static Uidai.Aadhaar.Internal.ExceptionHelper;
 
 namespace Uidai.Aadhaar.Agency
 {
     /// <summary>
     /// Provides a wrapper to send a registered device request and retrieve a response from CIDR servers.
     /// </summary>
+    [Obsolete]
     public class DeviceResetClient : ApiClient<DeviceResetRequest, DeviceResetResponse>
     {
-        /// <summary>
-        /// When overridden in a descendant class, sets the <see cref="ApiClient{TRequest, TResponse}.Address"/> property.
-        /// </summary>
-        protected override void ApplyAddress()
-        {
-            ValidateNull(AgencyInfo, nameof(AgencyInfo));
-            ValidateNull(Request, nameof(Request));
-
-            Address = AgencyInfo.GetAddress(Request.ApiName);
-        }
     }
 }
