@@ -20,18 +20,23 @@
  ********************************************************************************/
 #endregion
 
-namespace Uidai.Aadhaar.Security
+namespace Uidai.Aadhaar.Helper
 {
     /// <summary>
-    /// Provides an interface to decrypt data.
+    /// Represents an e-Aadhaar document that can be converted to a Portable Document Format (PDF).
     /// </summary>
-    public interface IDecrypter
+    public class AadhaarDocument
     {
         /// <summary>
-        /// Decrypts the specified encrypted byte array.
+        /// Gets or sets the type of the document.
         /// </summary>
-        /// <param name="dataToDecrypt">The data to decrypt.</param>
-        /// <returns>A byte array that contains the decrypted data.</returns>
-        byte[] Decrypt(byte[] dataToDecrypt);
+        /// <value>The type of the document.</value>
+        public DocumentType Type { get; set; }
+
+        /// <summary>
+        /// Gets or sets the content of the document in base64 format.
+        /// </summary>
+        /// <value>The contenc of the document in base64 format.</value>
+        public string Content { get; set; }
     }
 }

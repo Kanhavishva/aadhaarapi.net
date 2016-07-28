@@ -26,6 +26,7 @@ using System.IO;
 using System.Xml.Linq;
 using Uidai.Aadhaar.Helper;
 using Uidai.Aadhaar.Resident;
+using Uidai.Aadhaar.Security;
 using static Uidai.Aadhaar.Internal.ErrorMessage;
 using static Uidai.Aadhaar.Internal.ExceptionHelper;
 
@@ -39,27 +40,67 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets or sets the resident information.
         /// </summary>
+        /// <value>The resident information.</value>
         public PersonalInfo Resident { get; set; }
 
         /// <summary>
         /// Gets or sets the time to store resident information.
         /// </summary>
+        /// <value>The time to store resident information.</value>
         public DateTimeOffset TimeToLive { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value that indicates whether the decryption is to be performed by KSA.
+        /// </summary>
+        /// <value>A value that indicates whether the decryption is to be performed by KSA.</value>
+        public bool IsDecryptionByKsa { get; set; }
+
+        /// <summary>
+        /// Gets or sets the digitally signed e-Aadhaar of the resident.
+        /// This is useful for applications where a paper print is still needed.
+        /// Applications providers are highly encouraged to move away from paper printing and store and use XML data.
+        /// </summary>
+        /// <value>The digitally signed e-Aadhaar of the resident.</value>
+        public AadhaarDocument EAadhaar { get; set; }
+
+        /// <summary>
+        /// Gets or sets an decryptor to decrypt the response XML.
+        /// Data is not decrypted if <see cref="KycRequest.IsDecryptionByKsa"/> was set to true or if the authentication fails.
+        /// </summary>
+        /// <value>An instance of decryptor to decrypt the response XML.</value>
+        public IKycDecryptor Decryptor { get; set; }
 
         /// <summary>
         /// When overridden in a descendant class, deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="element"/> is null.</exception>
         protected override void DeserializeXml(XElement element)
         {
             ValidateNull(element, nameof(element));
 
+            IsAuthentic = element.Attribute("ret").Value[0] == AadhaarHelper.Yes;
+
+            if (!IsAuthentic)
+            {
+                ResponseCode = element.Attribute("code").Value;
+                Timestamp = DateTimeOffset.Parse(element.Attribute("ts").Value, CultureInfo.InvariantCulture);
+                ErrorCode = element.Attribute("err")?.Value;
+                return;
+            }
+
+            IsDecryptionByKsa = element.Attribute("ko").Value == "KSA";
+            if (!IsDecryptionByKsa)
+            {
+                var encryptedKycInfo = new EncryptedKycInfo { InfoValue = Convert.FromBase64String(element.Element("kycRes").Value) };
+                var decryptedKycInfo = encryptedKycInfo.Decrypt(Decryptor);
+                element = decryptedKycInfo.ToXml();
+            }
+
             var authBytes = Convert.FromBase64String(element.Element("Rar").Value);
             using (var stream = new MemoryStream(authBytes))
-            {
-                var authXml = XElement.Load(stream);
-                base.DeserializeXml(authXml);
-            }
+                base.DeserializeXml(XElement.Load(stream));
+
             TimeToLive = DateTimeOffset.Parse(element.Attribute("ttl").Value, CultureInfo.InvariantCulture);
 
             var uidData = element.Element("UidData");
@@ -79,6 +120,11 @@ namespace Uidai.Aadhaar.Api
                 Resident.Demographic.ILAddress = new Address(localAddress);
                 Resident.Demographic.LanguageUsed = (IndianLanguage?)int.Parse(localAddress.Attribute("lang").Value);
             }
+
+            var prn = element.Element("Prn");
+            // A workaround to support version 1.0. Version checking can be removed once v1.0 becomes obsolete.
+            if (prn != null)
+                EAadhaar = new AadhaarDocument { Content = prn.Value };
         }
 
         /// <summary>
@@ -88,7 +134,9 @@ namespace Uidai.Aadhaar.Api
         /// <returns>An instance of <see cref="XElement"/>.</returns>
         protected override XElement SerializeXml(string elementName)
         {
-            ValidateNull(Resident?.Demographic?.Address, nameof(Demographic.Address));
+            ValidateNull(Resident, nameof(Resident));
+            ValidateNull(Resident.Demographic, nameof(PersonalInfo.Demographic));
+            ValidateNull(Resident.Demographic.Address, nameof(Demographic.Address));
             ValidateNull(Resident.Demographic.Identity, nameof(Demographic.Identity));
             ValidateNull(Resident.Photo, nameof(PersonalInfo.Photo));
             ValidateEmptyString(Resident.AadhaarNumber, nameof(PersonalInfo.AadhaarNumber));
@@ -114,6 +162,10 @@ namespace Uidai.Aadhaar.Api
             // Create KycRes.
             var kycResponse = base.SerializeXml(elementName);
             kycResponse.Add(new XAttribute("ttl", TimeToLive), rar, uidData);
+
+            // A workaround to support version 1.0. Version checking can be removed once v1.0 becomes obsolete.
+            if (!string.IsNullOrWhiteSpace(EAadhaar?.Content))
+                kycResponse.Add(new XElement("Prn", EAadhaar.Content));
 
             // Remove unnecessary attributes.
             poi.Attribute("dobt")?.Remove();

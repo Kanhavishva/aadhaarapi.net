@@ -38,9 +38,10 @@ namespace Uidai.Aadhaar.Api
     public class KycRequest : AuthRequest
     {
         /// <summary>
-        /// Represents the KYC version. This field is read-only.
+        /// Represents the KYC version. This field is currently configurable.
         /// </summary>
-        public static readonly string KycVersion = "1.0";
+        /// <value>The KYC version.</value>
+        public static string KycVersion = "2.0";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="KycRequest"/> class.
@@ -51,6 +52,7 @@ namespace Uidai.Aadhaar.Api
         /// Initializes a new instance of the <see cref="KycRequest"/> class with a specified KYC data along with other details.
         /// </summary>
         /// <param name="kycContext">The authentication data received from device.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="kycContext"/> is null.</exception>
         public KycRequest(KycContext kycContext) : base(kycContext)
         {
             ValidateNull(kycContext, nameof(kycContext));
@@ -65,40 +67,47 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets the name of the API. The name is usually the XML root name sent in request.
         /// </summary>
+        /// <value>The name of the API.</value>
         public override string ApiName => "Kyc";
 
         /// <summary>
         /// Gets or sets the time of capturing the resident data.
         /// </summary>
+        /// <value>The time of capturing the resident data.</value>
         public DateTimeOffset Timestamp { get; set; }
 
         /// <summary>
         /// Gets or sets a value that indicates whether resident has consent to retrieve personal data in Indian language.
         /// Applications must take explicit informed resident consent and value should not be hard-coded under any circumstances.
         /// </summary>
+        /// <value>A value that indicates whether resident has consent to retrieve personal data in Indian language.</value>
         public bool AccessILInfo { get; set; }
 
         /// <summary>
         /// Gets or sets a value that indicates whether resident has consent to retrieve mobile and email address.
         /// Applications must take explicit informed resident consent and value should not be hard-coded under any circumstances.
         /// </summary>
+        /// <value>A value that indicates whether resident has consent to retrieve mobile and email address.</value>
         public bool AccessMobileAndEmail { get; set; }
 
         /// <summary>
-        /// Gets a value that indicates whether resident has consent to access data.
+        /// Gets or sets a value that indicates whether resident has consent to access data.
         /// Applications must take explicit informed resident consent and value should not be hard-coded under any circumstances.
         /// </summary>
+        /// <value>A value that indicates whether resident has consent to access data.</value>
         public bool HasResidentConsent { get; set; }
 
         /// <summary>
         /// Gets or sets a value that indicates whether the decryption is to be performed by KSA.
         /// </summary>
+        /// <value>A value that indicates whether the decryption is to be performed by KSA.</value>
         public bool IsDecryptionByKsa { get; set; }
 
         /// <summary>
         /// When overridden in a descendant class, deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="element"/> is null.</exception>
         protected override void DeserializeXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -127,6 +136,7 @@ namespace Uidai.Aadhaar.Api
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException"><see cref="Transaction"/> has invalid prefix. Or, <see cref="HasResidentConsent"/> is set to false.</exception>
         protected override XElement SerializeXml(string elementName)
         {
             if (!((string)Transaction).StartsWith("UKC:"))

@@ -26,6 +26,8 @@ namespace Uidai.Aadhaar.Internal
         // Invalid
         public static readonly string InvalidAadhaarNumber = "Aadhaar number is invalid.";
         public static readonly string InvalidBiometricPosition = "Biometric position is invalid.";
+        public static readonly string InvalidHeader = "Header data is invalid.";
+        public static readonly string InvalidHmac = "Data hash is wrong.";
         public static readonly string InvalidPincode = "Pincode must be 6 digits.";
         public static readonly string InvalidSignature = "Digital signature verification failed.";
         public static readonly string InvalidTransactionPrefix = "Transaction prefix is invalid.";
