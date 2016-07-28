@@ -46,35 +46,41 @@ namespace Uidai.Aadhaar.Device
         /// <summary>
         /// Gets the name of the API. The name is usually the XML root name sent in request.
         /// </summary>
+        /// <value>The name of the API.</value>
         public string ApiName => "Otp";
 
         /// <summary>
         /// Gets or sets the Aadhaar or mobile number.
         /// <see cref="RequestType"/> must be set to <see cref="OtpRequestType.MobileNumber"/> if mobile number is used. 
         /// </summary>
+        /// <value>The Aadhaar or mobile number.</value>
         public string AadhaarOrMobileNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the channel through which OTP should be sent.
         /// </summary>
+        /// <value>The channel through which OTP should be sent.</value>
         public OtpChannel Channel { get; set; }
 
         /// <summary>
         /// Gets or sets the type of number specified.
         /// Default is <see cref="OtpRequestType.AadhaarNumber"/>.
         /// </summary>
+        /// <value>The type of number specified.</value>
         public OtpRequestType RequestType { get; set; } = OtpRequestType.AadhaarNumber;
 
         /// <summary>
-        /// Gets or sets the registered terminal ID, when using registered device.
+        /// Gets or sets the terminal identifier.
         /// Default is <see cref="AadhaarHelper.PublicTerminal"/>.
         /// </summary>
+        /// <value>The terminal identifier.</value>
         public string Terminal { get; set; } = AadhaarHelper.PublicTerminal;
 
         /// <summary>
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="System.ArgumentNullException"><paramref name="element"/> is null.</exception>
         public void FromXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -94,6 +100,7 @@ namespace Uidai.Aadhaar.Device
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="System.ArgumentException"><see cref="Terminal"/> or <see cref="AadhaarOrMobileNumber"/> is empty. Or, <see cref="AadhaarOrMobileNumber"/> is invalid.</exception>
         public XElement ToXml(string elementName)
         {
             ValidateEmptyString(Terminal, nameof(Terminal));
@@ -111,5 +118,11 @@ namespace Uidai.Aadhaar.Device
 
             return otpContext;
         }
+
+        /// <summary>
+        /// Serializes the object into XML according to Aadhaar API specification.
+        /// </summary>
+        /// <returns>An instance of <see cref="XElement"/>.</returns>
+        public XElement ToXml() => ToXml(ApiName);
     }
 }
