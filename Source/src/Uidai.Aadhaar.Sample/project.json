@@ -1,7 +1,7 @@
-﻿{
+{
   "title": "Aadhaar API for .NET Sample",
   "description": "A sample for using the Uidai.Aadhaar class library.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "authors": [ "Souvik Dey Chowdhury" ],
 
   "packOptions": {
@@ -19,9 +19,12 @@
   },
 
   "dependencies": {
-    "Microsoft.Extensions.Configuration.Json": "1.0.0-*",
-    "Microsoft.Extensions.OptionsModel": "1.0.0-*",
-    "Uidai.Aadhaar": "0.8.2-*"
+    "Microsoft.Extensions.Configuration.Binder": "1.0.0-*",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "Uidai.Aadhaar": {
+      "target": "project",
+      "version": "0.8.5-*"
+    }
   },
 
   "frameworks": {

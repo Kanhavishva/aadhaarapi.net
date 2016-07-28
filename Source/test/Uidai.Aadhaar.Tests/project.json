@@ -22,20 +22,15 @@
   "testRunner": "xunit",
 
   "dependencies": {
+    "dotnet-test-xunit": "2.2.0-*",
     "xunit": "2.2.0-*",
-    "dotnet-test-xunit": "1.0.0-*",
-    "Uidai.Aadhaar": "0.8.2-*"
+    "Uidai.Aadhaar": {
+      "target": "project",
+      "version": "0.8.5-*"
+    }
   },
+
   "frameworks": {
-    "netcoreapp1.0": {
-      "dependencies": {
-        "Microsoft.NETCore.App": {
-          "type": "platform",
-          "version": "1.0.0-*"
-        }
-      },
-      "imports": [ "dnx46" ]
-    },
     "net46": { }
   }
 }
