@@ -38,108 +38,124 @@ namespace Uidai.Aadhaar.Agency
     /// <typeparam name="TResponse">The type of the response to receive.</typeparam>
     public class ApiClient<TRequest, TResponse> where TRequest : ApiRequest where TResponse : ApiResponse
     {
+        private static readonly string ContentType = "application/xml";
+
         /// <summary>
-        /// Gets or sets the address.
+        /// Gets or sets the address of the API service.
         /// </summary>
+        /// <value>The address of the API service..</value>
         public Uri Address { get; set; }
 
         /// <summary>
         /// Gets or sets the agency information.
         /// </summary>
+        /// <value>The agency information.</value>
         public UserAgency AgencyInfo { get; set; }
 
         /// <summary>
-        /// Gets or sets the request.
+        /// Gets or sets the API request.
         /// </summary>
+        /// <value>The API request.</value>
         public TRequest Request { get; set; }
 
         /// <summary>
-        /// Gets or sets the response.
+        /// Gets or sets the API response.
         /// </summary>
+        /// <value>The API response.</value>
         public TResponse Response { get; set; }
 
         /// <summary>
         /// Gets or sets a value that indicates whether to throw <see cref="ApiException"/> if <see cref="ApiResponse.ErrorCode"/> has value.
         /// </summary>
+        /// <value>A value that indicates whether to throw <see cref="ApiException"/> if <see cref="ApiResponse.ErrorCode"/> has value.</value>
+        [Obsolete]
         public bool ThrowOnApiException { get; set; }
 
         /// <summary>
-        /// Asynchronously sends a XML to a specified address and updates the <see cref="Response"/> property from a response XML.
+        /// Asynchronously sends an XML to a specified address and updates the <see cref="Response"/> property from a response XML.
         /// </summary>
-        /// <returns>A task that represents the asynchronous retrieve operation.</returns>
-        public async Task GetResponseAsync() => await RetrieveResponseAsync();
+        /// <returns>A task that represents the asynchronous response operation.</returns>
+        public async Task GetResponseAsync() => await GetResponseAsync(null, null);
 
         /// <summary>
         /// Asynchronously sends a transformed XML to a specified address and updates the <see cref="Response"/> property from a transformed response XML.
         /// </summary>
-        /// <param name="transformRequestXml">A work to transform the request XML, before sending it to CIDR servers.</param>
-        /// <param name="transformResponseXml">A work to transform the response XML returned from CIDR servers, before loading in the <see cref="Response"/> property.</param>
-        /// <returns>A task that represents the asynchronous retrieve operation.</returns>
-        public async Task GetResponseAsync(Func<XElement, XElement> transformRequestXml, Func<XElement, XElement> transformResponseXml)
+        /// <param name="requestXmlTransformer">A work to transform the request XML.</param>
+        /// <param name="responseXmlTransformer">A work to transform the response XML.</param>
+        /// <returns>A task that represents the asynchronous response operation.</returns>
+        public async Task GetResponseAsync(Func<XElement, XElement> requestXmlTransformer, Func<XElement, XElement> responseXmlTransformer)
         {
-            ValidateNull(Response, nameof(Response));
+            ApplyInfo();
 
-            ApplyAgencyInfo();
+            var requestXml = SerializeRequestXml();
+            if (requestXmlTransformer != null)
+                requestXml = requestXmlTransformer(requestXml);
 
-            var requestXml = Request.ToXml();
-            if (transformRequestXml != null)
-                requestXml = transformRequestXml(requestXml);
+            var responseXml = await GetResponseXmlAsync(requestXml);
+            if (responseXmlTransformer != null)
+                responseXml = responseXmlTransformer(responseXml);
 
-            var responseXml = await RetrieveResponseXmlAsync(requestXml);
-            if (transformResponseXml != null)
-                responseXml = transformResponseXml(responseXml);
-
-            Response.FromXml(responseXml);
-            if (ThrowOnApiException && !string.IsNullOrWhiteSpace(Response.ErrorCode))
-                throw new ApiException(Response.ErrorCode);
+            DeserializeResponseXml(responseXml);
         }
 
         /// <summary>
-        /// When overridden in a descendant class, sets the <see cref="Address"/> property.
+        /// When overridden in a descendant class, sets the address of the host and addtional properties for request and validation.
         /// </summary>
-        protected virtual void ApplyAddress()
+        protected virtual void ApplyInfo()
         {
-            Address = AgencyInfo.GetAddress(Request.ApiName);
-        }
-
-        /// <summary>
-        /// When overridden in a descendant class, sets agency information to the <see cref="Request"/> property.
-        /// </summary>
-        protected virtual void ApplyAgencyInfo()
-        {
-            ValidateNull(AgencyInfo, nameof(AgencyInfo));
             ValidateNull(Request, nameof(Request));
+            ValidateNull(Response, nameof(Response));
+            ValidateNull(AgencyInfo, nameof(AgencyInfo));
 
             Request.AuaCode = AgencyInfo.AuaCode;
             Request.AuaLicenseKey = AgencyInfo.AuaLicenseKey;
             Request.SubAuaCode = AgencyInfo.SubAuaCode;
+
+            Address = AgencyInfo.GetAddress(Request.ApiName);
         }
 
         /// <summary>
-        /// When overridden in a descendant class, asynchronously sends a XML to a specified address and updates the <see cref="Response"/> property from a response XML.
+        /// When overridden in a descendant class, serializes the request XML.
         /// </summary>
-        /// <returns>A task that represents the asynchronous retrieve operation.</returns>
-        protected virtual async Task RetrieveResponseAsync() => await GetResponseAsync(null, null);
+        /// <returns>An instance of <see cref="XElement"/>.</returns>
+        protected virtual XElement SerializeRequestXml()
+        {
+            return Request.ToXml();
+        }
 
         /// <summary>
         /// When overridden in a descendant class, asynchronously sends a XML to a specified address and gets a response XML.
         /// </summary>
-        /// <param name="xml">The XML to send.</param>
-        /// <returns>A task that represents the asynchronous retrieve operation.</returns>
-        protected virtual async Task<XElement> RetrieveResponseXmlAsync(XElement xml)
+        /// <param name="requestXml">The XML to send.</param>
+        /// <returns>A task that represents the asynchronous response operation.</returns>
+        protected virtual async Task<XElement> GetResponseXmlAsync(XElement requestXml)
         {
-            ValidateNull(xml, nameof(xml));
-
-            if (Address == null)
-                ApplyAddress();
-            ValidateNull(Address, nameof(Address));
-
             using (var client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
-                using (var content = new StringContent(xml.ToString(SaveOptions.DisableFormatting)))
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(ContentType));
+                using (var content = new StringContent(requestXml.ToString(SaveOptions.DisableFormatting)))
                 using (var response = (await client.PostAsync(Address, content)).EnsureSuccessStatusCode())
                     return XElement.Load(await response.Content.ReadAsStreamAsync());
+            }
+        }
+
+        /// <summary>
+        /// When overridden in a descendant class, deserializes the response XML.
+        /// </summary>
+        /// <param name="responseXml">The XML to deserialize.</param>
+        /// <exception cref="ApiException">API error occurred.</exception>
+        protected virtual void DeserializeResponseXml(XElement responseXml)
+        {
+            ValidateNull(Response, nameof(responseXml));
+
+            Response.ErrorCode = responseXml.Attribute("err")?.Value;
+
+            // Make sure to catch all exceptions arising during API error condition due to absence of certain mandatory XML elements and attributes.
+            try { Response.FromXml(responseXml); }
+            finally
+            {
+                if (!string.IsNullOrWhiteSpace(Response.ErrorCode))
+                    throw new ApiException(Response.ErrorCode);
             }
         }
     }

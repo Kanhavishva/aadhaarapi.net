@@ -24,7 +24,6 @@ using System.Security.Cryptography;
 using Uidai.Aadhaar.Api;
 using Uidai.Aadhaar.Device;
 using Uidai.Aadhaar.Helper;
-using static Uidai.Aadhaar.Internal.ExceptionHelper;
 
 namespace Uidai.Aadhaar.Agency
 {
@@ -34,24 +33,11 @@ namespace Uidai.Aadhaar.Agency
     public class OtpClient : ApiClient<OtpRequest, OtpResponse>
     {
         /// <summary>
-        /// When overridden in a descendant class, sets the <see cref="ApiClient{TRequest, TResponse}.Address"/> property.
+        /// When overridden in a descendant class, sets the address of the host and addtional properties for request and validation.
         /// </summary>
-        protected override void ApplyAddress()
+        protected override void ApplyInfo()
         {
-            ValidateNull(AgencyInfo, nameof(AgencyInfo));
-            ValidateNull(Request, nameof(Request));
-            ValidateEmptyString(Request.AadhaarOrMobileNumber, nameof(OtpRequest.AadhaarOrMobileNumber));
-
-            // Don't use Mobile number as part of the URL.
-            Address = AgencyInfo.GetAddress(Request.ApiName, Request.RequestType == OtpRequestType.AadhaarNumber ? Request.AadhaarOrMobileNumber : null);
-        }
-
-        /// <summary>
-        /// When overridden in a descendant class, sets agency information to the <see cref="ApiClient{TRequest, TResponse}.Request"/> property.
-        /// </summary>
-        protected override void ApplyAgencyInfo()
-        {
-            base.ApplyAgencyInfo();
+            base.ApplyInfo();
             if (Request.Info != null)
             {
                 using (var sha = SHA256.Create())
@@ -62,6 +48,9 @@ namespace Uidai.Aadhaar.Agency
                 Request.Info.SubAuaCode = Request.SubAuaCode;
                 Request.Info.Encode();
             }
+
+            // Don't use Mobile number as part of the URL.
+            Address = AgencyInfo.GetAddress(Request.ApiName, Request.RequestType == OtpRequestType.AadhaarNumber ? Request.AadhaarOrMobileNumber : null);
         }
     }
 }

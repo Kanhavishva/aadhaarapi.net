@@ -23,11 +23,9 @@
 using System;
 using System.IO;
 using System.Security.Cryptography;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 using Uidai.Aadhaar.Api;
 using Uidai.Aadhaar.Helper;
-using Uidai.Aadhaar.Security;
 using static Uidai.Aadhaar.Internal.ExceptionHelper;
 
 namespace Uidai.Aadhaar.Agency
@@ -38,28 +36,11 @@ namespace Uidai.Aadhaar.Agency
     public class KycClient : ApiClient<KycRequest, KycResponse>
     {
         /// <summary>
-        /// Gets or sets an instance of <see cref="IDecrypter"/> to decrypt the response XML.
+        /// When overridden in a descendant class, sets the address of the host and addtional properties for request and validation.
         /// </summary>
-        public IDecrypter Decrypter { get; set; }
-
-        /// <summary>
-        /// When overridden in a descendant class, sets the <see cref="ApiClient{TRequest, TResponse}.Address"/> property.
-        /// </summary>
-        protected override void ApplyAddress()
+        protected override void ApplyInfo()
         {
-            ValidateNull(AgencyInfo, nameof(AgencyInfo));
-            ValidateNull(Request, nameof(Request));
-            ValidateEmptyString(Request.AadhaarNumber, nameof(KycRequest.AadhaarNumber));
-
-            Address = AgencyInfo.GetAddress(Request.ApiName, Request.AadhaarNumber);
-        }
-
-        /// <summary>
-        /// When overridden in a descendant class, sets agency information to the <see cref="ApiClient{TRequest, TResponse}.Request"/> property.
-        /// </summary>
-        protected override void ApplyAgencyInfo()
-        {
-            base.ApplyAgencyInfo();
+            base.ApplyInfo();
             if (Request.Info != null)
             {
                 using (var sha = SHA256.Create())
@@ -71,27 +52,20 @@ namespace Uidai.Aadhaar.Agency
                 Request.Info.SubAuaCode = Request.SubAuaCode;
                 Request.Info.Encode();
             }
+            Address = AgencyInfo.GetAddress(Request.ApiName, Request.AadhaarNumber);
         }
 
         /// <summary>
-        /// When overridden in a descendant class, asynchronously sends a XML to a specified address and updates the <see cref="ApiClient{TRequest, TResponse}.Response"/> property from a response XML.
+        /// When overridden in a descendant class, deserializes the response XML.
         /// </summary>
-        /// <returns>A task that represents the asynchronous retrieve operation.</returns>
-        protected override async Task RetrieveResponseAsync()
+        /// <param name="responseXml">The XML to deserialize.</param>
+        /// <exception cref="ApiException">API error occurred.</exception>
+        protected override void DeserializeResponseXml(XElement responseXml)
         {
-            ValidateNull(Decrypter, nameof(Decrypter));
+            ValidateNull(responseXml, nameof(responseXml));
 
-            await GetResponseAsync(null, element =>
-            {
-                ValidateNull(element, nameof(element));
-                if (element.Attribute("status").Value == "-1")
-                    return element;
-
-                var encrypted = Convert.FromBase64String(element.Element("kycRes").Value);
-                var decrypted = Decrypter.Decrypt(encrypted);
-                using (var stream = new MemoryStream(decrypted))
-                    return XElement.Load(stream);
-            });
+            using (var stream = new MemoryStream(Convert.FromBase64String(responseXml.Element("kycRes").Value)))
+                base.DeserializeResponseXml(XElement.Load(stream));
         }
     }
 }

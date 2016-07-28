@@ -22,7 +22,6 @@
 
 using Uidai.Aadhaar.Api;
 using Uidai.Aadhaar.Helper;
-using static Uidai.Aadhaar.Internal.ExceptionHelper;
 
 namespace Uidai.Aadhaar.Agency
 {
@@ -32,14 +31,11 @@ namespace Uidai.Aadhaar.Agency
     public class BfdClient : ApiClient<BfdRequest, BfdResponse>
     {
         /// <summary>
-        /// When overridden in a descendant class, sets the <see cref="ApiClient{TRequest, TResponse}.Address"/> property.
+        /// When overridden in a descendant class, sets the address of the host and addtional properties for request and validation.
         /// </summary>
-        protected override void ApplyAddress()
+        protected override void ApplyInfo()
         {
-            ValidateNull(AgencyInfo, nameof(AgencyInfo));
-            ValidateNull(Request, nameof(Request));
-            ValidateEmptyString(Request.AadhaarNumber, nameof(BfdRequest.AadhaarNumber));
-
+            base.ApplyInfo();
             Address = AgencyInfo.GetAddress(Request.ApiName, Request.AadhaarNumber);
         }
     }
