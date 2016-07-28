@@ -23,9 +23,9 @@ namespace Uidai.Aadhaar.Sample
             // Just reference the signer key, as the signer and decryption key point to the same X.509 certificate.
             Kyc.Decryptor = new KycDecryptor { KuaKey = signerAndVerifier.Signer };
 
-            // Auth.AuthenticateAsync().GetAwaiter().GetResult();
+            Auth.AuthenticateAsync().GetAwaiter().GetResult();
             // Bfd.DetectBestFingerAsync().GetAwaiter().GetResult();
-            Kyc.KnowYourCustomerAsync().GetAwaiter().GetResult();
+            // Kyc.KnowYourCustomerAsync().GetAwaiter().GetResult();
 
             Console.ReadLine();
 
