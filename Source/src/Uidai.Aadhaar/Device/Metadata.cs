@@ -38,16 +38,19 @@ namespace Uidai.Aadhaar.Device
         /// <summary>
         /// Represents device not applicable. This field is read-only.
         /// </summary>
+        /// <value>Device not applicable.</value>
         public static readonly string DeviceNotApplicable = "NA";
 
         /// <summary>
         /// Represents device not certified. This field is read-only.
         /// </summary>
+        /// <value>Device not certified.</value>
         public static readonly string DeviceNotCertified = "NC";
 
         /// <summary>
         /// Represents the geocoordinate string format used in serialization. This field is read-only.
         /// </summary>
+        /// <value>The geocoordinate string format used in serialization</value>
         public static readonly string GeoCoordinateStringFormat = "{0:0.####},{1:0.####},{2:0.##}";
 
         private string fingerprintDeviceCode = DeviceNotCertified, irisDeviceCode = DeviceNotCertified, uniqueDeviceCode;
@@ -67,6 +70,8 @@ namespace Uidai.Aadhaar.Device
         /// Gets or sets the terminal device code. Suggested format is [vendor code][date of deployment][serial number].
         /// Maximum length is 20 characters.
         /// </summary>
+        /// <value>The terminal device code.</value>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is greater than 20 characters.</exception>
         public string UniqueDeviceCode
         {
             get { return uniqueDeviceCode; }
@@ -83,6 +88,8 @@ namespace Uidai.Aadhaar.Device
         /// Maximum length is 10 characters.
         /// Default is <see cref="DeviceNotCertified"/>.
         /// </summary>
+        /// <value>The fingerprint device code.</value>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is greater than 10 characters.</exception>
         public string FingerprintDeviceCode
         {
             get { return fingerprintDeviceCode; }
@@ -99,6 +106,8 @@ namespace Uidai.Aadhaar.Device
         /// Maximum length is 20 characters.
         /// Default is <see cref="DeviceNotCertified"/>.
         /// </summary>
+        /// <value>The iris device code.</value>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is greater than 10 characters.</exception>
         public string IrisDeviceCode
         {
             get { return irisDeviceCode; }
@@ -113,24 +122,28 @@ namespace Uidai.Aadhaar.Device
         /// <summary>
         /// Gets or sets the public IP address of the device.
         /// </summary>
+        /// <value>The public IP address of the device.</value>
         public IPAddress PublicAddress { get; set; }
 
         /// <summary>
         /// Gets or sets the geographic coordinate or pincode of the device.
         /// <see cref="SetGeoCoordinate(double, double, double)"/> or <see cref="SetPincode(string)"/> should be used to set this property.
         /// </summary>
+        /// <value>The geographic coordinate or pincode of the device.</value>
         public string Location { get; set; } = "0,0,0";
 
         /// <summary>
         /// Gets or sets the location type used by the device.
         /// Default is <see cref="LocationType.GeoCoordinate"/>.
         /// </summary>
+        /// <value>The location type used by the device.</value>
         public LocationType LocationType { get; set; } = LocationType.GeoCoordinate;
 
         /// <summary>
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="element"/> is null.</exception>
         public void FromXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -150,6 +163,7 @@ namespace Uidai.Aadhaar.Device
         /// </summary>
         /// <param name="elementName">The name of the parent element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException"><see cref="UniqueDeviceCode"/> or <see cref="Location"/> is empty.</exception>
         public XElement ToXml(string elementName)
         {
             ValidateEmptyString(UniqueDeviceCode, nameof(UniqueDeviceCode));
@@ -189,6 +203,7 @@ namespace Uidai.Aadhaar.Device
         /// <param name="latitude">The latitude.</param>
         /// <param name="longitude">The longitude.</param>
         /// <param name="altitude">The altitude.</param>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="latitude"/>, <paramref name="longitude"/> or <paramref name="altitude"/> is out of range.</exception>
         public void SetGeoCoordinate(double latitude, double longitude, double altitude)
         {
             if (latitude > 90.0 || latitude < -90.0)
@@ -206,10 +221,11 @@ namespace Uidai.Aadhaar.Device
         /// Sets <see cref="Location"/> to the specified pincode.
         /// </summary>
         /// <param name="pincode">The pincode.</param>
+        /// <exception cref="ArgumentException"><paramref name="pincode"/> is invalid.</exception>
         public void SetPincode(string pincode)
         {
             if (!AadhaarHelper.ValidatePincode(pincode))
-                throw new ArgumentOutOfRangeException(nameof(pincode), InvalidPincode);
+                throw new ArgumentException(nameof(pincode), InvalidPincode);
 
             Location = pincode;
             LocationType = LocationType.Pincode;
