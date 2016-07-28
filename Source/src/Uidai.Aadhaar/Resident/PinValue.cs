@@ -34,12 +34,14 @@ namespace Uidai.Aadhaar.Resident
         /// <summary>
         /// Gets or sets the most recently generated one time pin.
         /// </summary>
+        /// <value>The most recently generated one time pin.</value>
         public string Otp { get; set; }
 
         /// <summary>
         /// Gets or sets the actual pin as set by the resident.
         /// This option is not available for AUAs and is restricted to internal UIDAI usage only.
         /// </summary>
+        /// <value>The actual pin as set by the resident.</value>
         public string Pin { get; set; }
 
         /// <summary>
@@ -53,7 +55,7 @@ namespace Uidai.Aadhaar.Resident
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
-        /// <exception cref="NotSupportedException"></exception>
+        /// <exception cref="NotSupportedException">The method is not supported.</exception>
         void IXml.FromXml(XElement element)
         {
             throw new NotSupportedException();

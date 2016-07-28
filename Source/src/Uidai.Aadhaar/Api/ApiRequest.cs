@@ -36,7 +36,6 @@ namespace Uidai.Aadhaar.Api
     /// <seealso cref="BfdRequest"/>
     /// <seealso cref="OtpRequest"/>
     /// <seealso cref="KycRequest"/>
-    /// <seealso cref="DeviceResetRequest"/>
     public abstract class ApiRequest : IXml
     {
         private string auaCode, subAuaCode, auaLicenseKey;
@@ -45,17 +44,21 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets the name of the API. The name is usually the XML root name sent in request.
         /// </summary>
+        /// <value>The name of the API.</value>
         public abstract string ApiName { get; }
 
         /// <summary>
         /// Gets or sets the terminal identifier.
         /// </summary>
+        /// <value>The terminal identifier.</value>
         public string Terminal { get; set; }
 
         /// <summary>
         /// Gets or sets the AUA code.
         /// Maximum length is 10 characters.
         /// </summary>
+        /// <value>The AUA code.</value>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is greater than 10 characters.</exception>
         public string AuaCode
         {
             get { return auaCode; }
@@ -72,6 +75,8 @@ namespace Uidai.Aadhaar.Api
         /// Default is <see cref="AuaCode"/>.
         /// Maximum length is 10 characters.
         /// </summary>
+        /// <value>The Sub-AUA code.</value>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is greater than 10 characters.</exception>
         public string SubAuaCode
         {
             get { return !string.IsNullOrWhiteSpace(subAuaCode) ? subAuaCode : auaCode; }
@@ -87,6 +92,8 @@ namespace Uidai.Aadhaar.Api
         /// Gets or sets the transaction identifier.
         /// Maximum length is 50 characters.
         /// </summary>
+        /// <value>The transaction identifier.</value>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is greater than 50 characters.</exception>
         public Transaction Transaction
         {
             get { return transaction; }
@@ -102,6 +109,8 @@ namespace Uidai.Aadhaar.Api
         /// Gets or sets the AUA license key.
         /// Maximum length is 64 characters.
         /// </summary>
+        /// <value>The AUA license key.</value>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is greater than 64 characters.</exception>
         public string AuaLicenseKey
         {
             get { return auaLicenseKey; }
@@ -118,6 +127,7 @@ namespace Uidai.Aadhaar.Api
         /// Digital signing should always be performed by the entity that creates the final request XML.
         /// Derived class should therefore sign XML in their overridden <see cref="SerializeXml(string)"/> method.
         /// </summary>
+        /// <value>An instance of <see cref="ISigner"/> to sign XML.</value>
         public ISigner Signer { get; set; }
 
         /// <summary>
@@ -143,6 +153,7 @@ namespace Uidai.Aadhaar.Api
         /// When overridden in a descendant class, deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="element"/> is null.</exception>
         protected virtual void DeserializeXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -159,6 +170,7 @@ namespace Uidai.Aadhaar.Api
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException"><see cref="Terminal"/>, <see cref="AuaCode"/>, <see cref="Transaction"/> or <see cref="AuaLicenseKey"/> is empty.</exception>
         protected virtual XElement SerializeXml(string elementName)
         {
             ValidateEmptyString(Terminal, nameof(Terminal));

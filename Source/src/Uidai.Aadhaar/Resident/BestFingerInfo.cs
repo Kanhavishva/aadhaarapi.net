@@ -36,15 +36,18 @@ namespace Uidai.Aadhaar.Resident
     public class BestFingerInfo : IXml
     {
         /// <summary>
-        /// Represents Rbd version. This field is read-only.
+        /// Represents the Rbd version. This field is read-only.
         /// </summary>
+        /// <value>The Rbd version.</value>
         public static readonly string RbdVersion = "1.0";
 
         private string aadhaarNumber;
 
         /// <summary>
-        /// Gets or sets the Aadhaar number.
+        /// Gets or sets the Aadhaar number of the resident.
         /// </summary>
+        /// <value>The Aadhaar number of the resident.</value>
+        /// <exception cref="ArgumentException">Aadhaar number is invalid.</exception>
         public string AadhaarNumber
         {
             get { return aadhaarNumber; }
@@ -55,18 +58,20 @@ namespace Uidai.Aadhaar.Resident
         /// Gets or sets the time of capturing the resident data.
         /// Default is <see cref="DateTimeOffset.Now"/>
         /// </summary>
+        /// <value>The time of capturing the resident data.</value>
         public DateTimeOffset Timestamp { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
         /// Gets a collection of finger data of the resident.
         /// </summary>
+        /// <value>A collection of finger data.</value>
         public ICollection<TestFinger> Fingers { get; } = new HashSet<TestFinger>();
 
         /// <summary>
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
-        /// <exception cref="NotSupportedException"></exception>
+        /// <exception cref="NotSupportedException">The method is not supported.</exception>
         void IXml.FromXml(XElement element)
         {
             throw new NotSupportedException();
@@ -77,6 +82,7 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException"><see cref="Fingers"/> collection cannot be empty. At least one test finger is required.</exception>
         public XElement ToXml(string elementName)
         {
             if (Fingers.Count == 0)

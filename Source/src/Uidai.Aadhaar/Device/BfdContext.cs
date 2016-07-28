@@ -47,8 +47,9 @@ namespace Uidai.Aadhaar.Device
         public BfdContext(XElement element) { FromXml(element); }
 
         /// <summary>
-        /// Gets the name of the API service. The name is usually the name of the XML root sent in request.
+        /// Gets the name of the API. The name is usually the name of the XML root sent in request.
         /// </summary>
+        /// <value>The name of the API.</value>
         public override string ApiName => "Bfd";
 
         /// <summary>
@@ -56,6 +57,7 @@ namespace Uidai.Aadhaar.Device
         /// </summary>
         /// <param name="data">The data to encrypt.</param>
         /// <param name="key">The key to encrypt data.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="data"/> or <paramref name="key"/> is null.</exception>
         public override void Encrypt(BestFingerInfo data, SessionKey key)
         {
             ValidateNull(data, nameof(data));

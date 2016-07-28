@@ -47,25 +47,29 @@ namespace Uidai.Aadhaar.Resident
         /// <summary>
         /// Gets or sets the full address.
         /// </summary>
+        /// <value>The full address.</value>
         public string Address { get; set; }
 
         /// <summary>
         /// Gets or sets the full address in local Indian language.
         /// </summary>
+        /// <value>The full address in local Indian language.</value>
         public string ILAddress { get; set; }
 
         /// <summary>
-        /// Gets or sets the matching strategy of addresses. 
+        /// Gets or sets the matching strategy of the full addresses. 
         /// Default is <see cref="MatchingStrategy.Partial"/>.
         /// </summary>
+        /// <value>The matching strategy of the full addresses.</value>
         public MatchingStrategy Match { get; set; } = MatchingStrategy.Partial;
 
         /// <summary>
-        /// Gets or sets the partial match value of address.
+        /// Gets or sets the partial match value of the full address.
         /// Used only when <see cref="Match"/> is set to <see cref="MatchingStrategy.Partial"/>.
         /// Valid values are in the range 1 - 100.
         /// Default is 100.
         /// </summary>
+        /// <value>The partial match value of the full address.</value>
         public int MatchPercent
         {
             get { return matchPercent; }
@@ -78,6 +82,7 @@ namespace Uidai.Aadhaar.Resident
         /// Valid values are in the range 1 - 100.
         /// Default is 100.
         /// </summary>
+        /// <value>The partial match value of the full address in Indian language.</value>
         public int ILMatchPercent
         {
             get { return ilMatchPercent; }
@@ -95,6 +100,7 @@ namespace Uidai.Aadhaar.Resident
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="System.ArgumentNullException"><paramref name="element"/> is null.</exception>
         public void FromXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -135,6 +141,7 @@ namespace Uidai.Aadhaar.Resident
 
         /// <summary>
         /// Returns a string that represents the full address.
+        /// The full address in Indian language is returned if address in English is empty.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()

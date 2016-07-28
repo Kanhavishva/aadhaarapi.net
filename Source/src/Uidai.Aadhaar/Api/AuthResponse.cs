@@ -34,16 +34,19 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets or sets a value that indicates whether the authentication passed.
         /// </summary>
+        /// <value>A value that indicates whether the authentication passed.</value>
         public bool IsAuthentic { get; set; }
 
         /// <summary>
         /// Gets or sets the action code which are published from time to time meant to be shown to resident/operator.
         /// </summary>
+        /// <value>The action code which are published from time to time meant to be shown to resident/operator.</value>
         public string ActionCode { get; set; }
 
         /// <summary>
-        /// Gets or sets meta information.
+        /// Gets or sets the meta information.
         /// </summary>
+        /// <value>The meta information.</value>
         public AuthInfo Info { get; set; }
 
         /// <summary>
@@ -63,6 +66,7 @@ namespace Uidai.Aadhaar.Api
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="System.ArgumentException"><see cref="AuthInfo.InfoValue"/> is empty.</exception>
         protected override XElement SerializeXml(string elementName)
         {
             ValidateEmptyString(Info?.InfoValue, nameof(AuthInfo.InfoValue));

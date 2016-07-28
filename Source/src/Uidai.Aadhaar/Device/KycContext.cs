@@ -46,26 +46,30 @@ namespace Uidai.Aadhaar.Device
         public KycContext(XElement element) { FromXml(element); }
 
         /// <summary>
-        /// Gets the name of the API service. The name is usually the name of the XML root sent in request.
+        /// Gets the name of the API. The name is usually the XML root name sent in request.
         /// </summary>
+        /// <value>The name of the API.</value>
         public override string ApiName => "Kyc";
 
         /// <summary>
         /// Gets or sets a value that indicates whether resident has consent to access personal data in Indian language.
         /// Applications must take explicit informed resident consent and value should not be hard-coded under any circumstances.
         /// </summary>
+        /// <value>A value that indicates whether resident has consent to access personal data in Indian language.</value>
         public bool AccessILInfo { get; set; }
 
         /// <summary>
         /// Gets or sets a value that indicates whether resident has consent to access mobile and email address.
         /// Applications must take explicit informed resident consent and value should not be hard-coded under any circumstances.
         /// </summary>
+        /// <value>A value that indicates whether resident has consent to access mobile and email address.</value>
         public bool AccessMobileAndEmail { get; set; }
 
         /// <summary>
         /// Gets a value that indicates whether resident has consent to access data.
         /// Applications must take explicit informed resident consent and value should not be hard-coded under any circumstances.
         /// </summary>
+        /// <value>A value that indicates whether resident has consent to access data.</value>
         public bool HasResidentConsent { get; set; }
 
         /// <summary>
@@ -79,6 +83,7 @@ namespace Uidai.Aadhaar.Device
         /// </summary>
         /// <param name="data">The data to encrypt.</param>
         /// <param name="key">The key to encrypt data.</param>
+        /// <exception cref="ArgumentException"><see cref="HasResidentConsent"/> is set to false. Or, biometric or OTP data is not used.</exception>
         public override void Encrypt(PersonalInfo data, SessionKey key)
         {
             if (!HasResidentConsent)
@@ -110,6 +115,7 @@ namespace Uidai.Aadhaar.Device
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException"><see cref="HasResidentConsent"/> is set to false.</exception>
         protected override XElement SerializeXml(string elementName)
         {
             if (!HasResidentConsent)

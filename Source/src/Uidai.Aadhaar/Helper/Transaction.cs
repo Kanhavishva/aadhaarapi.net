@@ -38,6 +38,8 @@ namespace Uidai.Aadhaar.Helper
         /// <summary>
         /// Gets or sets a generator function to generate unique identifiers.
         /// </summary>
+        /// <value>A generator function to generate unique identifiers.</value>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         public static Func<string> Generator
         {
             get { return generator; }
@@ -51,13 +53,15 @@ namespace Uidai.Aadhaar.Helper
         /// <summary>
         /// Gets or sets the prefix to add to the identifier.
         /// </summary>
+        /// <value>The prefix to add to the identifier.</value>
         public string Prefix { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the unique identifier of the transaction.
         /// Default is <see cref="DateTimeOffset.Now"/>.
-        /// Use of ':' should be avoided to allow proper parsing.
+        /// It should not contain ':'.
         /// </summary>
+        /// <value>The unique identifier of the transaction.</value>
         public string Value { get; set; } = Generator();
 
         /// <summary>

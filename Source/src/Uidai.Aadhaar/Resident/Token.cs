@@ -46,11 +46,13 @@ namespace Uidai.Aadhaar.Resident
         /// <summary>
         /// Gets or sets the type of the token.
         /// </summary>
+        /// <value>The type of the token.</value>
         public TokenType TokenType { get; set; } = TokenType.MobileNumber;
 
         /// <summary>
         /// Gets or sets the value of the token.
         /// </summary>
+        /// <value>The value of the token.</value>
         public string Value { get; set; }
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="System.ArgumentException"><see cref="Value"/> is empty.</exception>
         public XElement ToXml(string elementName)
         {
             ValidateEmptyString(Value, nameof(Value));

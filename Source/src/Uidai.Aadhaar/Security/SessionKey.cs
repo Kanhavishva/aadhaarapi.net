@@ -34,8 +34,9 @@ namespace Uidai.Aadhaar.Security
     public class SessionKey : IDisposable
     {
         /// <summary>
-        /// Represents the time span a synchronized key is valid. This field is configurable.
+        /// Represents the time span of a synchronized key is valid. This field is configurable.
         /// </summary>
+        /// <value>The time span of a synchronized key.</value>
         public static TimeSpan SynchronizedKeyTimeout = new TimeSpan(3, 45, 0);
 
         private readonly bool leaveOpen;
@@ -85,26 +86,31 @@ namespace Uidai.Aadhaar.Security
         /// Gets the encrypted key info used to encrypt data.
         /// A new key is generated after <see cref="KeyInfo"/> is accessed.
         /// </summary>
+        /// <value>The encrypted key info.</value>
         public SessionKeyInfo KeyInfo => EncryptKey();
 
         /// <summary>
         /// Gets the UIDAI public key.
         /// </summary>
+        /// <value>The UIDAI public key.</value>
         public X509Certificate2 UidaiKey { get; }
 
         /// <summary>
         /// Gets a value that indicates whether the session key is synchronized.
         /// </summary>
+        /// <value>A value that indicates whether the session key is synchronized.</value>
         public bool IsSynchronized { get; }
 
         /// <summary>
         /// Gets the key identifier of the synchronized session key.
         /// </summary>
+        /// <value>The key identifier of the synchronized session key.</value>
         public Guid KeyIdentifier { get; }
 
         /// <summary>
         /// Gets a value that indicates whether a synchronized session key has expired. 
         /// </summary>
+        /// <value>A value that indicates whether a synchronized session key has expired.</value>
         public bool HasExpired => IsSynchronized && seedCreationTime - DateTimeOffset.Now > SynchronizedKeyTimeout;
 
         /// <summary>
@@ -112,6 +118,8 @@ namespace Uidai.Aadhaar.Security
         /// </summary>
         /// <param name="dataToEncrypt">The data to encrypt.</param>
         /// <returns>A byte array that contains the encrypted data.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="dataToEncrypt"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">The session key has expired.</exception>
         public byte[] Encrypt(byte[] dataToEncrypt)
         {
             ValidateNull(dataToEncrypt, nameof(dataToEncrypt));

@@ -49,18 +49,21 @@ namespace Uidai.Aadhaar.Resident
         /// <summary>
         /// Gets or sets the authentication factors captured.
         /// </summary>
+        /// <value>The authentication factors captured.</value>
         public AuthTypes AuthUsed { get; set; }
 
         /// <summary>
         /// Gets a collection of biometric types captured.
-        /// Collection cannot be empty if <see cref="AuthTypes.Biometric"/> flag is set in <see cref="AuthUsed"/>.
+        /// Collection cannot be empty if <see cref="AuthTypes.Biometric"/> is set in <see cref="AuthUsed"/>.
         /// </summary>
+        /// <value>A collection of biometrics types captured.</value>
         public ICollection<BiometricType> Biometrics { get; } = new HashSet<BiometricType>();
 
         /// <summary>
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="element"/> is null.</exception>
         public void FromXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -91,6 +94,7 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException"><see cref="AuthTypes.Biometric"/> is set, but <see cref="Biometrics"/> collection is empty.</exception>
         public XElement ToXml(string elementName)
         {
             if (AuthUsed.HasFlag(AuthTypes.Biometric) && Biometrics.Count == 0)

@@ -38,32 +38,36 @@ namespace Uidai.Aadhaar.Api
     /// <seealso cref="BfdResponse"/>
     /// <seealso cref="OtpResponse"/>
     /// <seealso cref="KycResponse"/>
-    /// <seealso cref="DeviceResetResponse"/>
     public abstract class ApiResponse : IXml
     {
         /// <summary>
         /// Gets or sets the unique alphanumeric response code.
         /// </summary>
+        /// <value>The unique alphanumeric response code.</value>
         public string ResponseCode { get; set; }
 
         /// <summary>
         /// Gets or sets the transaction identifier specified during request.
         /// </summary>
+        /// <value>The transaction identifier specified during request.</value>
         public Transaction Transaction { get; set; }
 
         /// <summary>
         /// Gets or sets the date time when the response is generated.
         /// </summary>
+        /// <value>The date time when the response is generated.</value>
         public DateTimeOffset Timestamp { get; set; }
 
         /// <summary>
         /// Gets or sets the error code if request fails.
         /// </summary>
+        /// <value>The error code if request fails.</value>
         public string ErrorCode { get; set; }
 
         /// <summary>
         /// Gets or sets an instance of <see cref="IVerifier"/> to verify signature of signed XML.
         /// </summary>
+        /// <value>An instance of <see cref="IVerifier"/> to verify signature of signed XML.</value>
         public IVerifier Verifier { get; set; }
 
         /// <summary>
@@ -83,6 +87,8 @@ namespace Uidai.Aadhaar.Api
         /// When overridden in a descendant class, deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="element"/> is null.</exception>
+        /// <exception cref="CryptographicException">Signature is invalid.</exception>
         protected virtual void DeserializeXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -101,6 +107,7 @@ namespace Uidai.Aadhaar.Api
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException"><see cref="ResponseCode"/> or <see cref="Transaction"/> is empty.</exception>
         protected virtual XElement SerializeXml(string elementName)
         {
             ValidateEmptyString(ResponseCode, nameof(ResponseCode));

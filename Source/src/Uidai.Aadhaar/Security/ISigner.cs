@@ -30,7 +30,7 @@ namespace Uidai.Aadhaar.Security
     public interface ISigner
     {
         /// <summary>
-        /// Computes digital signature and adds it to an XML element.
+        /// Computes digital signature and adds it to the specified XML element.
         /// </summary>
         /// <param name="xml">The XML on which the signature is to be computed.</param>
         /// <returns>The Signature element of the XML.</returns>

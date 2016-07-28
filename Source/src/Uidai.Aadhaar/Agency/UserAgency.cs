@@ -33,26 +33,31 @@ namespace Uidai.Aadhaar.Agency
         /// <summary>
         /// Gets or sets the AUA license key.
         /// </summary>
+        /// <value>The AUA license key.</value>
         public string AuaLicenseKey { get; set; }
 
         /// <summary>
         /// Gets or sets the ASA license key.
         /// </summary>
+        /// <value>The ASA license key.</value>
         public string AsaLicenseKey { get; set; }
 
         /// <summary>
         /// Gets or sets the AUA code.
         /// </summary>
+        /// <value>The AUA code.</value>
         public string AuaCode { get; set; }
 
         /// <summary>
         /// Gets or sets the Sub-AUA code.
         /// </summary>
+        /// <value>The Sub-AUA code.</value>
         public string SubAuaCode { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of host URI assigned to AUA for using UIDAI services.
         /// </summary>
+        /// <value>A collection of host URI assigned to AUA for using UIDAI services.</value>
         public Dictionary<string, Uri> Hosts { get; set; }
     }
 }

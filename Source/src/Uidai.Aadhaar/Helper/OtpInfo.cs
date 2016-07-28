@@ -42,36 +42,43 @@ namespace Uidai.Aadhaar.Helper
         /// <summary>
         /// Gets or sets the encoded value.
         /// </summary>
+        /// <value>The encoded value.</value>
         public string InfoValue { get; set; }
 
         /// <summary>
         /// Gets or sets the hash value of the Aadhaar number in a hexadecimal format.
         /// </summary>
+        /// <value>The hash value of the Aadhaar number in a hexadecimal format.</value>
         public string AadhaarNumberHash { get; set; }
 
         /// <summary>
         /// Gets or sets the timestamp specified in the PID block.
         /// </summary>
+        /// <value>The timestamp specified in the PID block.</value>
         public DateTimeOffset Timestamp { get; set; }
 
         /// <summary>
         /// Gets or sets the hash value of the AUA code in a hexadecimal format.
         /// </summary>
+        /// <value>The hash value of the AUA code in a hexadecimal format.</value>
         public string AuaCodeHash { get; set; }
 
         /// <summary>
         /// Gets or sets the Sub-AUA code.
         /// </summary>
+        /// <value>The Sub-AUA code.</value>
         public string SubAuaCode { get; set; }
 
         /// <summary>
         /// Gets or sets the masked mobile.
         /// </summary>
+        /// <value>The masked mobile.</value>
         public string MaskedMobile { get; set; }
 
         /// <summary>
         /// Gets or sets the masked email.
         /// </summary>
+        /// <value>The masked email.</value>
         public string MaskedEmail { get; set; }
 
         /// <summary>
@@ -103,6 +110,7 @@ namespace Uidai.Aadhaar.Helper
         /// <summary>
         /// Decodes meta information of authentication data according to Aadhaar API specification.
         /// </summary>
+        /// <exception cref="ArgumentException"><see cref="InfoValue"/> is empty.</exception>
         public void Decode()
         {
             ValidateEmptyString(InfoValue, nameof(InfoValue));
@@ -134,6 +142,7 @@ namespace Uidai.Aadhaar.Helper
         /// </summary>
         /// <param name="result">The meta information to validate.</param>
         /// <returns>A string array of invalid property names.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="result"/> is null.</exception>
         public string[] Validate(OtpInfo result)
         {
             ValidateNull(result, nameof(result));

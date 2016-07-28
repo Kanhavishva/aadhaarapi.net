@@ -48,35 +48,41 @@ namespace Uidai.Aadhaar.Resident
         /// <summary>
         /// Gets or sets Indian language used in <see cref="Identity.ILName"/> and <see cref="FullAddress.ILAddress"/>.
         /// </summary>
+        /// <value>The Indian language used.</value>
         public IndianLanguage? LanguageUsed { get; set; }
 
         /// <summary>
-        /// Gets or sets the identity.
+        /// Gets or sets the identity of the resident.
         /// </summary>
+        /// <value>The identity of the resident.</value>
         public Identity Identity { get; set; }
 
         /// <summary>
-        /// Gets or sets the address in parts.
+        /// Gets or sets the address of the resident.
         /// <see cref="Address"/> and <see cref="FullAddress"/> cannot be used in same transaction.
         /// </summary>
+        /// <value>The address of the resident.</value>
         public Address Address { get; set; }
 
         /// <summary>
-        /// Gets or sets the address in parts in Indian Language.
-        /// This property is only populated in e-KYC response.
+        /// Gets or sets the address of the resident in Indian language.
+        /// This property is only populated in e-KYC response and is excluded from serialization and deserialization.
         /// </summary>
+        /// <value>The address of the resident in Indian language.</value>
         public Address ILAddress { get; set; }
 
         /// <summary>
-        /// Gets or sets the full address.
-        /// <see cref="FullAddress"/> and <see cref="Address"/> cannot be used in same transaction.
+        /// Gets or sets the full address of the resident.
+        /// <see cref="Address"/> and <see cref="FullAddress"/> cannot be used in same transaction.
         /// </summary>
+        /// <value>The full address of the resident.</value>
         public FullAddress FullAddress { get; set; }
 
         /// <summary>
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="element"/> is null.</exception>
         public void FromXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -99,6 +105,10 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException">
+        /// <see cref="Identity.ILName"/> or <see cref="FullAddress.ILAddress"/> has value but <see cref="LanguageUsed"/> is not set.
+        /// Or <see cref="Address"/> and <see cref="FullAddress"/> are both set.
+        /// </exception>
         public XElement ToXml(string elementName)
         {
             var isILUsed = !(string.IsNullOrWhiteSpace(Identity?.ILName) && string.IsNullOrWhiteSpace(FullAddress?.ILAddress));

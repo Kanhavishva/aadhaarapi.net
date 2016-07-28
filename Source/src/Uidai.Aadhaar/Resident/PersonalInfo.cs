@@ -37,15 +37,18 @@ namespace Uidai.Aadhaar.Resident
     public class PersonalInfo : IXml
     {
         /// <summary>
-        /// Represents Pid version. This field is read-only.
+        /// Represents the Pid version. This field is read-only.
         /// </summary>
+        /// <value>The Pid version.</value>
         public static readonly string PidVersion = "1.0";
 
         private string aadhaarNumber;
 
         /// <summary>
-        /// Gets or sets the Aadhaar number.
+        /// Gets or sets the Aadhaar number of the resident.
         /// </summary>
+        /// <value>The Aadhaar number of the resident.</value>
+        /// <exception cref="ArgumentException">Aadhaar number is invalid.</exception>
         public string AadhaarNumber
         {
             get { return aadhaarNumber; }
@@ -56,33 +59,39 @@ namespace Uidai.Aadhaar.Resident
         /// Gets or sets the time of capturing the resident data.
         /// Default is <see cref="DateTimeOffset.Now"/>
         /// </summary>
+        /// <value>The time of capturing the resident data.</value>
         public DateTimeOffset Timestamp { get; set; } = DateTimeOffset.Now;
 
         /// <summary>
         /// Gets or sets the demographic data of the resident.
         /// </summary>
+        /// <value>The demographic data of the resident.</value>
         public Demographic Demographic { get; set; }
 
         /// <summary>
         /// Gets a collection of biometric data of the resident.
         /// <see cref="BiometricType.Fingerprint"/> and <see cref="BiometricType.Minutiae"/> cannot be used in same transaction.
         /// </summary>
+        /// <value>A collection of biometric data of the resident.</value>
         public ICollection<Biometric> Biometrics { get; } = new HashSet<Biometric>();
 
         /// <summary>
         /// Gets or sets the OTP received by the resident.
         /// </summary>
+        /// <value>The OTP received by the resident.</value>
         public PinValue PinValue { get; set; }
 
         /// <summary>
         /// Gets or sets the photo of the resident.
         /// This property is only used in e-KYC response.
         /// </summary>
+        /// <value>The photo of the resident.</value>
         public byte[] Photo { get; set; }
 
         /// <summary>
         /// Gets the authentication factors captured.
         /// </summary>
+        /// <value>The authentication factors captured.</value>
         public AuthUsage Uses
         {
             get
@@ -126,7 +135,7 @@ namespace Uidai.Aadhaar.Resident
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
-        /// <exception cref="NotSupportedException"></exception>
+        /// <exception cref="NotSupportedException">The method is not supported.</exception>
         void IXml.FromXml(XElement element)
         {
             throw new NotSupportedException();
@@ -137,6 +146,10 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException">
+        /// No authentication data captured.
+        /// Or, <see cref="BiometricType.Fingerprint"/> and <see cref="BiometricType.Minutiae"/> cannot be used in same transaction.
+        /// </exception>
         public XElement ToXml(string elementName)
         {
             if (Uses.AuthUsed == AuthTypes.None)

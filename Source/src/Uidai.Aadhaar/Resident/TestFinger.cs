@@ -39,12 +39,14 @@ namespace Uidai.Aadhaar.Resident
         /// Gets or sets the NIST Fingerprint Image Quality.
         /// Default is <see cref="Nfiq.Excellent"/>.
         /// </summary>
+        /// <value>The NIST Fingerprint Image Quality.</value>
         public Nfiq Quality { get; set; } = Nfiq.Excellent;
 
         /// <summary>
         /// Gets or sets the number of attempts.
         /// Default is 1.
         /// </summary>
+        /// <value>The number of attempts.</value>
         public int NumberOfAttempts
         {
             get { return numberOfAttempts; }
@@ -59,11 +61,13 @@ namespace Uidai.Aadhaar.Resident
         /// <summary>
         /// Gets or sets the finger position.
         /// </summary>
+        /// <value>The finger position.</value>
         public BiometricPosition Position { get; set; }
 
         /// <summary>
         /// Gets or sets the <see cref="BiometricType.Minutiae"/> data in base64 format.
         /// </summary>
+        /// <value>The biometric data in base64 format.</value>
         public string Data { get; set; }
 
         /// <summary>
@@ -77,7 +81,7 @@ namespace Uidai.Aadhaar.Resident
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
-        /// <exception cref="NotSupportedException"></exception>
+        /// <exception cref="NotSupportedException">The method is not supported.</exception>
         void IXml.FromXml(XElement element)
         {
             throw new NotSupportedException();
@@ -88,6 +92,10 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException">
+        /// <see cref="Position"/> is not one of the fingers.
+        /// Or, <see cref="Data"/> is empty.
+        /// </exception>
         public XElement ToXml(string elementName)
         {
             if (Position == BiometricPosition.Unknown || Position == BiometricPosition.LeftIris || Position == BiometricPosition.RightIris)

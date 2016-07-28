@@ -42,41 +42,49 @@ namespace Uidai.Aadhaar.Helper
         /// <summary>
         /// Represents the no value used in XML.
         /// </summary>
+        /// <value>The no value used in XML</value>
         public const char No = 'n';
 
         /// <summary>
         /// Represents the no value in upper case used in XML.
         /// </summary>
+        /// <value>The no value in upper case used in XML</value>
         public const char NoUpper = 'N';
 
         /// <summary>
         /// Represents the yes value used in XML.
         /// </summary>
+        /// <value>The yes value used in XML</value>
         public const char Yes = 'y';
 
         /// <summary>
         /// Represents the yes value in upper case used in XML.
         /// </summary>
+        /// <value>The yes value in upper case used in XML</value>
         public const char YesUpper = 'Y';
 
         /// <summary>
         /// Represents the maximum match percentage allowed. This field is constant.
         /// </summary>
+        /// <value>The maximum match percentage allowed</value>
         public const int MaxMatchPercent = 100;
 
         /// <summary>
         /// Represent the public terminal identifier. This field is read-only.
         /// </summary>
+        /// <value>The public terminal identifier</value>
         public static readonly string PublicTerminal = "public";
 
         /// <summary>
         /// Represents the timestamp format derived from ISO 8601 used in serialization. This field is read-only.
         /// </summary>
+        /// <value>The timestamp format derived from ISO 8601 used in serialization</value>
         public static readonly string TimestampFormat = "s";
 
         /// <summary>
         /// Represents an Aadhaar number formatter.
         /// </summary>
+        /// <value>An Aadhaar number formatter</value>
         public static readonly AadhaarNumberFormatter AadhaarFormatInfo = new AadhaarNumberFormatter();
 
         private static readonly int[,] Multiplication =
@@ -138,6 +146,7 @@ namespace Uidai.Aadhaar.Helper
         /// </summary>
         /// <param name="personalInfo">An instance of <see cref="PersonalInfo"/>.</param>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="personalInfo"/> or <paramref cref="element"/> is null.</exception>
         public static void DecodeQRCodeXml(this PersonalInfo personalInfo, XElement element)
         {
             ValidateNull(personalInfo, nameof(personalInfo));
@@ -156,6 +165,7 @@ namespace Uidai.Aadhaar.Helper
         /// </summary>
         /// <param name="value">The string containing the characters to encode.</param>
         /// <returns>A byte array containing the results of encoding the specified set of characters.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         public static byte[] GetBytes(this string value)
         {
             ValidateNull(value, nameof(value));
@@ -177,6 +187,7 @@ namespace Uidai.Aadhaar.Helper
         /// </summary>
         /// <param name="value">An array of bytes.</param>
         /// <returns>A string of hexadecimal value.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         public static string ToHex(this byte[] value)
         {
             ValidateNull(value, nameof(value));
@@ -191,6 +202,11 @@ namespace Uidai.Aadhaar.Helper
         /// <param name="apiName">Name of the API.</param>
         /// <param name="aadhaarNumber">The Aadhaar number.</param>
         /// <returns>An instance of <see cref="Uri"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="agencyInfo"/> is null.</exception>
+        /// <exception cref="ArgumentException">
+        /// <paramref name="apiName"/> or AUA code is empty.
+        /// Or, hostname is not found in <see cref="UserAgency.Hosts"/>.
+        /// </exception>
         public static Uri GetAddress(this UserAgency agencyInfo, string apiName, string aadhaarNumber = null)
         {
             ValidateNull(agencyInfo, nameof(agencyInfo));

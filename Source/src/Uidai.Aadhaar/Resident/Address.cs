@@ -30,7 +30,7 @@ using static Uidai.Aadhaar.Internal.ExceptionHelper;
 namespace Uidai.Aadhaar.Resident
 {
     /// <summary>
-    /// Represents address of a resident in parts.
+    /// Represents address of a resident.
     /// </summary>
     public class Address : IUsed, IXml
     {
@@ -48,53 +48,64 @@ namespace Uidai.Aadhaar.Resident
         public Address(XElement element) { FromXml(element); }
 
         /// <summary>
-        /// Gets or sets the care of.
+        /// Gets or sets the name of the care of.
         /// </summary>
+        /// <value>The name of the care of.</value>
         public string CareOf { get; set; }
 
         /// <summary>
         /// Gets or sets the house number.
         /// </summary>
+        /// <value>The house number.</value>
         public string House { get; set; }
 
         /// <summary>
-        /// Gets or sets the street.
+        /// Gets or sets the street name.
         /// </summary>
+        /// <value>The street name.</value>
         public string Street { get; set; }
 
         /// <summary>
-        /// Gets or sets the landmark.
+        /// Gets or sets the landmark name.
         /// </summary>
+        /// <value>The landmark name.</value>
         public string Landmark { get; set; }
 
         /// <summary>
-        /// Gets or sets the locality.
+        /// Gets or sets the locality name.
         /// </summary>
+        /// <value>The locality name.</value>
         public string Locality { get; set; }
 
         /// <summary>
-        /// Gets or sets the village/town/city.
+        /// Gets or sets the village/town/city name.
         /// </summary>
+        /// <value>The village/town/city name.</value>
         public string VillageOrCity { get; set; }
 
         /// <summary>
-        /// Gets or sets the sub-district.
+        /// Gets or sets the sub-district name.
         /// </summary>
+        /// <value>The sub-district name.</value>
         public string SubDistrict { get; set; }
 
         /// <summary>
-        /// Gets or sets the district.
+        /// Gets or sets the district name.
         /// </summary>
+        /// <value>The district name.</value>
         public string District { get; set; }
 
         /// <summary>
-        /// Gets or sets the state.
+        /// Gets or sets the state name.
         /// </summary>
+        /// <value>The state name.</value>
         public string State { get; set; }
 
         /// <summary>
         /// Gets or sets the pincode. 
         /// </summary>
+        /// <value>The pincode.</value>
+        /// <exception cref="ArgumentException">Pincode is not a number, or is not a six digit positive number.</exception>
         public string Pincode
         {
             get { return pincode; }
@@ -107,8 +118,9 @@ namespace Uidai.Aadhaar.Resident
         }
 
         /// <summary>
-        /// Gets or sets the post office.
+        /// Gets or sets the post office name.
         /// </summary>
+        /// <value>The post office name.</value>
         public string PostOffice { get; set; }
 
         /// <summary>
@@ -131,6 +143,7 @@ namespace Uidai.Aadhaar.Resident
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="element"/> is null.</exception>
         public void FromXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -176,18 +189,19 @@ namespace Uidai.Aadhaar.Resident
         /// <summary>
         /// Returns a string that represents the address as per UIDAI demographic standards.
         /// </summary>
+        /// <remarks>
+        /// The returned string follows the KYR Demographic Standard: <br/>
+        /// [C/o Person Name] <br/>
+        /// Building <br/>
+        /// [Street] <br/>
+        /// [Landmark], [Locality] <br/>
+        /// Village/Town/City, District <br/>
+        /// State – Pin Code <br/>
+        /// The fields without [ ] are considered as mandatory.
+        /// </remarks>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            /* KYR Demographic Standard:
-             * [C/o Person Name]
-             * Building
-             * [Street]
-             * [Landmark], [Locality]
-             * Village/Town/City, District
-             * State – Pin Code
-            */
-
             var builder = new StringBuilder(250);
 
             // Address Line 1

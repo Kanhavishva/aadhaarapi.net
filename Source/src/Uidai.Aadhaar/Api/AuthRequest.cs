@@ -37,6 +37,7 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Represents the Auth version. This field is read-only.
         /// </summary>
+        /// <value>The Auth version.</value>
         public static readonly string AuthVersion = "1.6";
 
         private string aadhaarNumber;
@@ -50,6 +51,7 @@ namespace Uidai.Aadhaar.Api
         /// Initializes a new instance of the <see cref="AuthRequest"/> class with a specified authentication data received from device.
         /// </summary>
         /// <param name="authContext">The authentication data received from device.</param>
+        /// <exception cref="System.ArgumentNullException"><paramref name="authContext"/> is null.</exception>
         public AuthRequest(AuthContext authContext)
         {
             ValidateNull(authContext, nameof(authContext));
@@ -67,11 +69,14 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets the name of the API. The name is usually the XML root name sent in request.
         /// </summary>
+        /// <value>The name of the API.</value>
         public override string ApiName => "Auth";
 
         /// <summary>
         /// Gets or sets the Aadhaar number.
         /// </summary>
+        /// <value>The Aadhaar number.</value>
+        /// <exception cref="System.ArgumentException">Aadhaar number is invalid.</exception>
         public string AadhaarNumber
         {
             get { return aadhaarNumber; }
@@ -81,36 +86,44 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets or sets the authentication factors captured by device.
         /// </summary>
+        /// <value>The authentication factors captured by device.</value>
         public AuthUsage Uses { get; set; }
 
         /// <summary>
         /// Gets or sets the metadata information of the device.
         /// </summary>
+        /// <value>The metadata information of the device.</value>
         public Metadata DeviceInfo { get; set; }
 
         /// <summary>
         /// Gets or sets the session key info used to encrypt data.
         /// </summary>
+        /// <value>The session key info used to encrypt data.</value>
         public SessionKeyInfo KeyInfo { get; set; }
 
         /// <summary>
         /// Gets or sets the encrypted data.
         /// </summary>
+        /// <value>The encrypted data.</value>
         public EncryptedData Data { get; set; }
 
         /// <summary>
         /// Gets or sets the encrypted hash value of the data in base64 format.
         /// </summary>
+        /// <value>The encrypted hash value of the data in base64 format.</value>
         public string Hmac { get; set; }
 
         /// <summary>
         /// Gets or sets the token.
         /// </summary>
+        /// <value>The token.</value>
         public Token Token { get; set; }
 
         /// <summary>
-        /// Gets or sets meta information.
+        /// Gets or sets any meta information received from device.
+        /// This property is excluded from serialization and deserialization.
         /// </summary>
+        /// <value>The meta information received from device.</value>
         public AuthInfo Info { get; set; }
 
         /// <summary>
@@ -137,6 +150,8 @@ namespace Uidai.Aadhaar.Api
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="System.ArgumentNullException"><see cref="Uses"/>, <see cref="DeviceInfo"/>, <see cref="KeyInfo"/> or <see cref="Data"/> is null.</exception>
+        /// <exception cref="System.ArgumentException"><see cref="AadhaarNumber"/> or <see cref="Hmac"/> is empty.</exception>
         protected override XElement SerializeXml(string elementName)
         {
             ValidateNull(Uses, nameof(Uses));

@@ -36,8 +36,9 @@ namespace Uidai.Aadhaar.Helper
     public class AuthInfo
     {
         /// <summary>
-        /// Represents info version. This field is read-only.
+        /// Represents the info version. This field is read-only.
         /// </summary>
+        /// <value>The info version.</value>
         public static readonly string InfoVersion = "02";
 
         private static readonly string TimestampFormat = "yyyyMMddHHmmss";
@@ -86,41 +87,49 @@ namespace Uidai.Aadhaar.Helper
         /// <summary>
         /// Gets or sets the encoded value.
         /// </summary>
+        /// <value>The encoded value.</value>
         public string InfoValue { get; set; }
 
         /// <summary>
         /// Gets or sets the encoded usage data in a 60-bit hexadecimal format.
         /// </summary>
+        /// <value>The encoded usage data in a 60-bit hexadecimal format.</value>
         public string UsageData { get; set; }
 
         /// <summary>
         /// Gets or sets the hash value of Aadhaar number in a hexadecimal format.
         /// </summary>
+        /// <value>The hash value of Aadhaar number in a hexadecimal format.</value>
         public string AadhaarNumberHash { get; set; }
 
         /// <summary>
         /// Gets or sets the hash value of the demographic block in a hexadecimal format.
         /// </summary>
+        /// <value>The hash value of the demographic block in a hexadecimal format.</value>
         public string DemographicHash { get; set; }
 
         /// <summary>
         /// Gets or sets the timestamp specified in the PID block.
         /// </summary>
+        /// <value>The timestamp specified in the PID block.</value>
         public DateTimeOffset Timestamp { get; set; }
 
         /// <summary>
         /// Gets or sets the hash value of the Terminal identifier in a hexadecimal format.
         /// </summary>
+        /// <value>The hash value of the Terminal identifier in a hexadecimal format.</value>
         public string TerminalHash { get; set; }
 
         /// <summary>
         /// Gets or sets the hash value of the AUA code in a hexadecimal format.
         /// </summary>
+        /// <value>The hash value of the AUA code in a hexadecimal format.</value>
         public string AuaCodeHash { get; set; }
 
         /// <summary>
         /// Gets or sets the Sub-AUA code.
         /// </summary>
+        /// <value>The Sub-AUA code.</value>
         public string SubAuaCode { get; set; }
 
         /// <summary>
@@ -159,6 +168,7 @@ namespace Uidai.Aadhaar.Helper
         /// <summary>
         /// Decodes meta information of authentication data according to Aadhaar API specification.
         /// </summary>
+        /// <exception cref="ArgumentException"><see cref="InfoValue"/> is empty.</exception>
         public void Decode()
         {
             ValidateEmptyString(InfoValue, nameof(InfoValue));
@@ -196,7 +206,8 @@ namespace Uidai.Aadhaar.Helper
         /// Determines whether a meta received in response is valid with the generated meta information.
         /// </summary>
         /// <param name="authInfo">The meta information to validate.</param>
-        /// <returns>A string array of invalid property names.</returns>
+        /// <returns>A string array of property names whose values do not match with <paramref name="authInfo"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="authInfo"/> is null.</exception>
         public string[] Validate(AuthInfo authInfo)
         {
             ValidateNull(authInfo, nameof(authInfo));
@@ -222,6 +233,7 @@ namespace Uidai.Aadhaar.Helper
         /// Returns <see cref="UsageData"/> wrapped in a <see cref="BitArray"/> of size 60 to allow easy comparison of usage data.
         /// </summary>
         /// <returns>An instance of <see cref="BitArray"/></returns>
+        /// <exception cref="ArgumentException"><see cref="UsageData"/> is empty.</exception>
         public BitArray GetUsageData()
         {
             ValidateEmptyString(UsageData, nameof(UsageData));
@@ -245,7 +257,7 @@ namespace Uidai.Aadhaar.Helper
         /// <see cref="PinValue"/>,
         /// <see cref="Biometric"/>.
         /// </summary>
-        /// <returns>A string array of invalid property names</returns>
+        /// <returns>A string array of invalid property names.</returns>
         public IEnumerable<string> GetMismatch()
         {
             var bitArray = GetUsageData();

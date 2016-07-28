@@ -50,6 +50,7 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets the error code that describes the current exception.
         /// </summary>
+        /// <value>The error code that describes the current exception.</value>
         public string ErrorCode => Message;
     }
 }

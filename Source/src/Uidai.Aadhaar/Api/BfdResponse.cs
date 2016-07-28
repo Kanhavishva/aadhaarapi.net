@@ -39,16 +39,19 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets or sets an actionable feedback message in English in case resident or operator needs to take specific actions.
         /// </summary>
+        /// <value>An actionable feedback message in English.</value>
         public string Message { get; set; }
 
         /// <summary>
         /// Gets or sets the action code which are published from time to time meant to be shown to resident/operator.
         /// </summary>
+        /// <value>The action code which are published from time to time.</value>
         public string ActionCode { get; set; }
 
         /// <summary>
         /// Gets a collection of ranks associated with each finger that was part of input. 
         /// </summary>
+        /// <value>A collection of ranks associated with each finger that was part of input. </value>
         public SortedList<int, BiometricPosition> Ranks { get; } = new SortedList<int, BiometricPosition>();
 
         /// <summary>
@@ -74,6 +77,7 @@ namespace Uidai.Aadhaar.Api
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException"><see cref="ActionCode"/> or <see cref="Message"/> is empty. Or, biometric position is invalid.</exception>
         protected override XElement SerializeXml(string elementName)
         {
             ValidateEmptyString(ActionCode, nameof(ActionCode));

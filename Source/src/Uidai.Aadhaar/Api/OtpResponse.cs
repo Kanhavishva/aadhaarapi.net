@@ -33,11 +33,13 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets or sets a value that indicates whether OTP is sent to resident successfully.
         /// </summary>
+        /// <value>A value that indicates whether OTP is sent to resident successfully.</value>
         public bool IsOtpSent { get; set; }
 
         /// <summary>
-        /// Gets or sets meta information.
+        /// Gets or sets the meta information.
         /// </summary>
+        /// <value>The meta information.</value>
         public OtpInfo Info { get; set; }
 
         /// <summary>

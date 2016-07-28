@@ -50,22 +50,26 @@ namespace Uidai.Aadhaar.Device
         /// <summary>
         /// Gets the name of the API. The name is usually the XML root name sent in request.
         /// </summary>
+        /// <value>The name of the API.</value>
         public override string ApiName => "Auth";
 
         /// <summary>
         /// Gets or sets the authentication factors captured.
         /// </summary>
+        /// <value>The authentication factors captured.</value>
         public AuthUsage Uses { get; set; }
 
         /// <summary>
-        /// Gets or sets meta information.
+        /// Gets or sets the meta information.
         /// Meta information is only calculated in <see cref="Encrypt(PersonalInfo, SessionKey)"/> if this property is initialized.
         /// </summary>
+        /// <value>The meta information.</value>
         public AuthInfo Info { get; set; }
 
         /// <summary>
         /// Gets or sets the token.
         /// </summary>
+        /// <value>The token.</value>
         public Token Token { get; set; }
 
         /// <summary>
@@ -73,6 +77,7 @@ namespace Uidai.Aadhaar.Device
         /// </summary>
         /// <param name="data">The data to encrypt.</param>
         /// <param name="key">The key to encrypt data.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="data"/> or <paramref name="key"/> is null.</exception>
         public override void Encrypt(PersonalInfo data, SessionKey key)
         {
             ValidateNull(data, nameof(data));
@@ -149,6 +154,7 @@ namespace Uidai.Aadhaar.Device
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentNullException"><see cref="Uses"/> is null.</exception>
         protected override XElement SerializeXml(string elementName)
         {
             ValidateNull(Uses, nameof(Uses));

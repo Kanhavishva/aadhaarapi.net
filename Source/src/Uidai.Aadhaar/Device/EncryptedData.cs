@@ -45,17 +45,20 @@ namespace Uidai.Aadhaar.Device
         /// <summary>
         /// Gets the encoding type of the encrypted data.
         /// </summary>
+        /// <value>The encoding type of the encrypted data.</value>
         public EncodingType EncodingType => EncodingType.Xml;
 
         /// <summary>
         /// Gets or sets the encrypted data in base64 format.
         /// </summary>
+        /// <value>The encrypted data in base64 format.</value>
         public string Data { get; set; }
 
         /// <summary>
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="System.ArgumentNullException"><paramref name="element"/> is null.</exception>
         public void FromXml(XElement element)
         {
             Data = ValidateNull(element, nameof(element)).Value;
@@ -66,6 +69,7 @@ namespace Uidai.Aadhaar.Device
         /// </summary>
         /// <param name="elementName">The name of the parent element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="System.ArgumentException"><see cref="Data"/> is empty.</exception>
         public XElement ToXml(string elementName)
         {
             ValidateEmptyString(Data, nameof(Data));

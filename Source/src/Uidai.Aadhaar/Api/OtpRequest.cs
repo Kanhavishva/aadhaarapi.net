@@ -36,6 +36,7 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Represents the OTP version. This field is currently configurable.
         /// </summary>
+        /// <value>The OTP version.</value>
         public static string OtpVersion = "1.6";
 
         /// <summary>
@@ -58,32 +59,39 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets the name of the API. The name is usually the XML root name sent in request.
         /// </summary>
+        /// <value>The name of the API.</value>
         public override string ApiName => "Otp";
 
         /// <summary>
         /// Gets or sets the Aadhaar or mobile number.
         /// </summary>
+        /// <value>The Aadhaar or mobile number.</value>
         public string AadhaarOrMobileNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the type of number specified.
         /// </summary>
+        /// <value>The type of number specified.</value>
         public OtpRequestType RequestType { get; set; }
 
         /// <summary>
         /// Gets or sets the channel through which OTP should be sent.
         /// </summary>
+        /// <value>The channel through which OTP should be sent.</value>
         public OtpChannel Channel { get; set; }
 
         /// <summary>
-        /// Gets or sets meta information.
+        /// Gets or sets any meta information received from device.
+        /// This property is excluded from serialization and deserialization.
         /// </summary>
+        /// <value>The meta information received from device.</value>
         public OtpInfo Info { get; set; }
 
         /// <summary>
         /// When overridden in a descendant class, deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="System.ArgumentNullException"><paramref name="element"/> is null.</exception>
         protected override void DeserializeXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -103,6 +111,7 @@ namespace Uidai.Aadhaar.Api
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="System.ArgumentException"><see cref="AadhaarOrMobileNumber"/> is empty. Or, Aadhaar number is invalid.</exception>
         protected override XElement SerializeXml(string elementName)
         {
             ValidateEmptyString(AadhaarOrMobileNumber, nameof(AadhaarOrMobileNumber));
@@ -112,6 +121,8 @@ namespace Uidai.Aadhaar.Api
             var otpRequest = base.SerializeXml(elementName);
             otpRequest.Add(new XAttribute("uid", AadhaarOrMobileNumber),
                 new XAttribute("ver", OtpVersion));
+
+            // A workaround to support version 1.5. Version checking can be removed once v1.5 becomes obsolete.
             if (OtpVersion == "1.6" && RequestType != OtpRequestType.AadhaarNumber)
                 otpRequest.Add(new XAttribute("type", (char)RequestType));
             if (RequestType != OtpRequestType.MobileNumber && Channel != OtpChannel.SmsAndEmail)

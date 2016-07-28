@@ -30,7 +30,7 @@ namespace Uidai.Aadhaar.Resident
 {
     /// <summary>
     /// Represents biometric data of a resident.
-    /// Biometric data should never be stored anywhere.
+    /// Biometric and OTP data captured should not be stored on any permanent storage or database.
     /// </summary>
     public class Biometric : IEquatable<Biometric>, IUsed, IXml
     {
@@ -40,17 +40,20 @@ namespace Uidai.Aadhaar.Resident
         /// <summary>
         /// Gets or sets the type of biometric data.
         /// </summary>
+        /// <value>The type of biometric data.</value>
         public BiometricType Type { get; set; }
 
         /// <summary>
         /// Gets or sets the position of biometric data. 
         /// </summary>
+        /// <value>The position of biometric data.</value>
         public BiometricPosition Position { get; set; }
 
         /// <summary>
         /// Gets or sets the biometric data in base64 format.
-        /// In case of registered device, this contains encrypted biometric record. 
+        /// In case of registered device, it contains encrypted biometric record.
         /// </summary>
+        /// <value>The biometric data in base64 format.</value>
         public string Data { get; set; }
 
         /// <summary>
@@ -70,7 +73,7 @@ namespace Uidai.Aadhaar.Resident
         /// Deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
-        /// <exception cref="NotSupportedException"></exception>
+        /// <exception cref="NotSupportedException">The method is not supported.</exception>
         void IXml.FromXml(XElement element)
         {
             throw new NotSupportedException();
@@ -81,6 +84,10 @@ namespace Uidai.Aadhaar.Resident
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentException">
+        /// <see cref="Type"/> and <see cref="Position"/> does not match.
+        /// Or, <see cref="Data"/> is empty.
+        /// </exception>
         public XElement ToXml(string elementName)
         {
             if ((Type == BiometricType.Iris && Position != BiometricPosition.LeftIris && Position != BiometricPosition.RightIris && Position != BiometricPosition.Unknown) ||

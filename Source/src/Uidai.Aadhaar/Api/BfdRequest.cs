@@ -48,6 +48,7 @@ namespace Uidai.Aadhaar.Api
         /// Initializes a new instance of the <see cref="BfdRequest"/> class with a specified best finger detection data received from device.
         /// </summary>
         /// <param name="bfdContext">The finger data received from device.</param>
+        /// <exception cref="System.ArgumentNullException"><paramref name="bfdContext"/> is null.</exception>
         public BfdRequest(BfdContext bfdContext)
         {
             ValidateNull(bfdContext, nameof(bfdContext));
@@ -63,11 +64,13 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets the name of the API. The name is usually the XML root name sent in request.
         /// </summary>
+        /// <value>The name of the API.</value>
         public override string ApiName => "Bfd";
 
         /// <summary>
         /// Gets or sets the Aadhaar number.
         /// </summary>
+        /// <value>The Aadhaar number.</value>
         public string AadhaarNumber
         {
             get { return aadhaarNumber; }
@@ -77,21 +80,25 @@ namespace Uidai.Aadhaar.Api
         /// <summary>
         /// Gets or sets the metadata information of the device.
         /// </summary>
+        /// <value>The metadata information of the device.</value>
         public Metadata DeviceInfo { get; set; }
 
         /// <summary>
         /// Gets or sets the session key info used to encrypt data.
         /// </summary>
+        /// <value>The session key info used to encrypt data.</value>
         public SessionKeyInfo KeyInfo { get; set; }
 
         /// <summary>
         /// Gets or sets the encrypted data.
         /// </summary>
+        /// <value>The encrypted data.</value>
         public EncryptedData Data { get; set; }
 
         /// <summary>
         /// Gets or sets the encrypted hash value of the data.
         /// </summary>
+        /// <value>The encrypted hash value of the data.</value>
         public string Hmac { get; set; }
 
         /// <summary>
@@ -117,6 +124,8 @@ namespace Uidai.Aadhaar.Api
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="System.ArgumentNullException"><see cref="DeviceInfo"/>, <see cref="KeyInfo"/> or <see cref="Data"/> is null.</exception>
+        /// <exception cref="System.ArgumentException"><see cref="AadhaarNumber"/> or <see cref="Hmac"/> is empty.</exception>
         protected override XElement SerializeXml(string elementName)
         {
             ValidateNull(DeviceInfo, nameof(DeviceInfo));

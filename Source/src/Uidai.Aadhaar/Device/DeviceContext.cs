@@ -56,11 +56,14 @@ namespace Uidai.Aadhaar.Device
         /// <summary>
         /// Gets the name of the API. The name is usually the XML root name sent in request.
         /// </summary>
+        /// <value>The name of the API.</value>
         public abstract string ApiName { get; }
 
         /// <summary>
-        /// Gets or sets the Aadhaar number.
+        /// Gets or sets the Aadhaar number of the resident.
         /// </summary>
+        /// <value>The Aadhaar number of the resident.</value>
+        /// <exception cref="ArgumentException">Aadhaar number is invalid.</exception>
         public string AadhaarNumber
         {
             get { return aadhaarNumber; }
@@ -71,31 +74,37 @@ namespace Uidai.Aadhaar.Device
         /// Gets or sets the terminal identifier.
         /// Default is <see cref="AadhaarHelper.PublicTerminal"/>.
         /// </summary>
+        /// <value>The terminal identifier.</value>
         public string Terminal { get; set; } = AadhaarHelper.PublicTerminal;
 
         /// <summary>
         /// Gets or sets the time of capturing the resident data.
         /// </summary>
+        /// <value>The timestamp of capturing the resident data.</value>
         public DateTimeOffset Timestamp { get; set; }
 
         /// <summary>
         /// Gets or sets the metadata information of the device.
         /// </summary>
+        /// <value>The metadata information of the device.</value>
         public Metadata DeviceInfo { get; set; }
 
         /// <summary>
         /// Gets or sets the session key info used to encrypt data.
         /// </summary>
+        /// <value>The session key info used to encrypt data.</value>
         public SessionKeyInfo KeyInfo { get; set; }
 
         /// <summary>
         /// Gets or sets the encrypted data.
         /// </summary>
+        /// <value>The encrypted data.</value>
         public EncryptedData Data { get; set; }
 
         /// <summary>
         /// Gets or sets the encrypted hash value of the data in base64 format.
         /// </summary>
+        /// <value>The encrypted hash value of the data in base64 format.</value>
         public string Hmac { get; set; }
 
         /// <summary>
@@ -136,6 +145,7 @@ namespace Uidai.Aadhaar.Device
         /// When overridden in a descendant class, deserializes the object from an XML according to Aadhaar API specification.
         /// </summary>
         /// <param name="element">An instance of <see cref="XElement"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="element"/> is null.</exception>
         protected virtual void DeserializeXml(XElement element)
         {
             ValidateNull(element, nameof(element));
@@ -154,6 +164,8 @@ namespace Uidai.Aadhaar.Device
         /// </summary>
         /// <param name="elementName">The name of the element.</param>
         /// <returns>An instance of <see cref="XElement"/>.</returns>
+        /// <exception cref="ArgumentNullException"><see cref="DeviceInfo"/>, <see cref="KeyInfo"/> or <see cref="Data"/> is null.</exception>
+        /// <exception cref="ArgumentException"><see cref="AadhaarNumber"/> or <see cref="Hmac"/> is empty.</exception>
         protected virtual XElement SerializeXml(string elementName)
         {
             ValidateNull(DeviceInfo, nameof(DeviceInfo));
