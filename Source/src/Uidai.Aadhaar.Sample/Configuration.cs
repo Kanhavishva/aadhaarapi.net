@@ -1,33 +1,61 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Uidai.Aadhaar.Agency;
 using Uidai.Aadhaar.Device;
 
 namespace Uidai.Aadhaar.Sample
 {
+    /// <summary>
+    /// Represents the configuration data of device and user agency.
+    /// </summary>
     public class Configuration
     {
-        public Configuration()
-        {
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("aadhaar.json").Build();
-
-            AgencyInfo = configuration.Get<UserAgency>("AgencyInfo");
-            DeviceInfo = configuration.Get<Metadata>("DeviceInfo");
-            UidaiEncryption = new X509Certificate2(configuration.Get<string>("UIDAIEncryption"));
-            UidaiDigitalSignature = new X509Certificate2(configuration.Get<string>("UidaiDigitalSignature"));
-        }
-
-        public static Configuration Current { get; } = new Configuration();
-
+        /// <summary>
+        /// Gets or sets the agency information.
+        /// </summary>
+        /// <value>The agency information.</value>
         public UserAgency AgencyInfo { get; set; }
 
+        /// <summary>
+        /// Gets or sets the device information.
+        /// </summary>
+        /// <value>The device information.</value>
         public Metadata DeviceInfo { get; set; }
 
-        public X509Certificate2 AuaKey { get; set; } = new X509Certificate2(@"Key\AuaSign.p12", "public");
+        /// <summary>
+        /// Gets or sets the path to the X.509 certificate to encrypt session key.
+        /// </summary>
+        /// <value>The path to the X.509 certificate to encrypt session key.</value>
+        public string UidaiEncryptionKeyPath { get; set; }
 
-        public X509Certificate2 UidaiEncryption { get; set; }
+        /// <summary>
+        /// Gets or sets the path to the X.509 certificate to sign request XML.
+        /// </summary>
+        /// <value>The path to the X.509 certificate to sign request XML.</value>
+        public string UidaiSignatureKeyPath { get; set; }
 
-        public X509Certificate2 UidaiDigitalSignature { get; set; }
+        /// <summary>
+        /// Gets or sets the path to the X.509 certificate to decrypt e-KYC response data.
+        /// </summary>
+        /// <value>The path to the X.509 certificate to decrypt e-KYC response data.</value>
+        public string AuaDecryptionKeyPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to the X.509 certificate to verify signature of response XML.
+        /// </summary>
+        /// <value>The path to the X.509 certificate to verify signature of response XML.</value>
+        public string AuaSignatureKeyPath { get; set; }
+
+        /// <summary>
+        /// Reads a JSON configuration file and binds its value to <see cref="Configuration"/> instance.
+        /// </summary>
+        /// <returns>An instance of <see cref="Configuration"/>.</returns>
+        public static Configuration GetConfiguration()
+        {
+            var builder = new ConfigurationBuilder().AddJsonFile("aadhaar.json").Build();
+            var configuration = new Configuration();
+            builder.Bind(configuration);
+
+            return configuration;
+        }
     }
 }

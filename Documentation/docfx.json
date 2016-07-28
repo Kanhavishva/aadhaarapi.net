@@ -25,6 +25,11 @@
       "_description": "Aadhaar API for .NET is a client library that provides an easy way to interact with the UIDAI Aadhaar services.",
       "_appFooter": "Copyright (C) 2015 Souvik Dey Chowdhury<br>Licensed under GNU Lesser General Public License v3 or later"
     },
+    "externalReference": [
+      {
+        "files": "content/**"
+      }
+    ],
     "dest": "_site",
     "template": [ "default" ]
   }

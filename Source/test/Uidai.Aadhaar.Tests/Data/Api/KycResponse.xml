@@ -19,7 +19,7 @@
       <Pht>UFBQUFBQUFBQUA==</Pht>
     </UidData>
   </KycRes>
-  <Resp code="RRRRRRRRRR" txn="UKC:KYC:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="" ret="y" actn="AAAAAAAAAA" status="-1" ko="KUA" />
+  <Resp code="RRRRRRRRRR" txn="UKC:KYC:20150101000000000" ts="2015-01-01T00:00:00+05:30" err="" ret="y" actn="AAAAAAAAAA" status="-1" />
 </Test>
 <!--
   Convert to Base64.

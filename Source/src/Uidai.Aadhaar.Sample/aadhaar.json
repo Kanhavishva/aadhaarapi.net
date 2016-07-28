@@ -1,6 +1,4 @@
 ﻿{
-  "_comment": "Remove Agency Configurations at Device Level and Device Configurations at Agency Level.",
-
   "DeviceInfo": {
     "UniqueDeviceCode": "ABCDE.20150101.00001",
     "FingerprintDeviceCode": "NC",
@@ -8,7 +6,7 @@
     "Location": "21,78,0",
     "LocationType": "GeoCoordinate"
   },
-  "UIDAIEncryption": "Key/UidaiEncryptAndSign.cer",
+  "UIDAIEncryptionKeyPath": "Key/Uidai.cer",
 
   "AgencyInfo": {
     "AuaLicenseKey": "MBFWjkJHNF-fLidl8oOHtUwgL5p1ZjDbWrqsMEVEJLVEDpnlNj_CZTg",
@@ -21,5 +19,7 @@
       "Otp": "http://developer.uidai.gov.in/uidotpserver/1.5/"
     }
   },
-  "UIDAIDigitalSignature": "Key/UidaiEncryptAndSign.cer"
+  "UIDAISignatureKeyPath": "Key/Uidai.cer",
+  "AUASignatureKeyPath": "Key/Aua.p12",
+  "AUADecryptionKeyPath": "Key/Aua.p12"
 }

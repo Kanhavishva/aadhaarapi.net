@@ -1,1 +1,1 @@
-﻿TODO: To be replaced with a custome index.html
+﻿TODO: To be replaced with a custom index.html
