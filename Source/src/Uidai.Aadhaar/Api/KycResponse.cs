@@ -79,15 +79,13 @@ namespace Uidai.Aadhaar.Api
         {
             ValidateNull(element, nameof(element));
 
-            IsAuthentic = element.Attribute("ret").Value[0] == AadhaarHelper.Yes;
+            IsAuthentic = element.Attribute("ret").Value[0] == AadhaarHelper.YesUpper;
+            ResponseCode = element.Attribute("code").Value;
+            Timestamp = DateTimeOffset.Parse(element.Attribute("ts").Value, CultureInfo.InvariantCulture);
+            ErrorCode = element.Attribute("err")?.Value;
 
-            if (!IsAuthentic)
-            {
-                ResponseCode = element.Attribute("code").Value;
-                Timestamp = DateTimeOffset.Parse(element.Attribute("ts").Value, CultureInfo.InvariantCulture);
-                ErrorCode = element.Attribute("err")?.Value;
+            if (!string.IsNullOrWhiteSpace(ErrorCode))
                 return;
-            }
 
             IsDecryptionByKsa = element.Attribute("ko").Value == "KSA";
             if (!IsDecryptionByKsa)
@@ -121,10 +119,10 @@ namespace Uidai.Aadhaar.Api
                 Resident.Demographic.LanguageUsed = (IndianLanguage?)int.Parse(localAddress.Attribute("lang").Value);
             }
 
-            var prn = element.Element("Prn");
+            var prn = element.Element("Prn")?.Value;
             // A workaround to support version 1.0. Version checking can be removed once v1.0 becomes obsolete.
             if (prn != null)
-                EAadhaar = new AadhaarDocument { Content = prn.Value };
+                EAadhaar = new AadhaarDocument { Content = prn };
         }
 
         /// <summary>
