@@ -77,9 +77,13 @@
     <Compile Include="Device\KycContext.cs" />
     <Compile Include="Device\Metadata.cs" />
     <Compile Include="Device\OtpContext.cs" />
+    <Compile Include="Helper\AadhaarDocument.cs" />
     <Compile Include="Helper\AadhaarHelper.cs" />
     <Compile Include="Helper\AadhaarNumberFormatter.cs" />
     <Compile Include="Helper\AuthInfo.cs" />
+    <Compile Include="Helper\DecryptedKycInfo.cs" />
+    <Compile Include="Helper\EncryptedKycInfo.cs" />
+    <Compile Include="Helper\Enumerations.cs" />
     <Compile Include="Helper\IUsed.cs" />
     <Compile Include="Helper\IXml.cs" />
     <Compile Include="Helper\OtpInfo.cs" />
@@ -98,10 +102,10 @@
     <Compile Include="Resident\PinValue.cs" />
     <Compile Include="Resident\TestFinger.cs" />
     <Compile Include="Resident\Token.cs" />
-    <Compile Include="Security\IDecrypter.cs" />
+    <Compile Include="Security\IKycDecryptor.cs" />
     <Compile Include="Security\ISigner.cs" />
     <Compile Include="Security\IVerifier.cs" />
-    <Compile Include="Security\KycDecrypter.cs" />
+    <Compile Include="Security\KycDecryptor.cs" />
     <Compile Include="Security\SessionKey.cs" />
     <Compile Include="Security\SessionKeyInfo.cs" />
     <Compile Include="Security\XmlSignature.cs" />
