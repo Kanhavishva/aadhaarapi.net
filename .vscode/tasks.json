@@ -1,0 +1,15 @@
+{
+    "version": "0.1.0",
+    "command": "dotnet",
+    "options": {
+        "cwd": "${workspaceRoot}/Source/Uidai.Aadhaar.Sample"
+    },
+    "tasks": [
+        {
+            "taskName": "build",
+            "isBuildCommand": true,
+            "problemMatcher": "$msCompile",
+            "showOutput": "silent"
+        }
+    ]
+}

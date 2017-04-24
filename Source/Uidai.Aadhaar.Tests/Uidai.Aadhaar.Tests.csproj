@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Unit tests for Uidai.Aadhaar class library.</Description>
+    <Copyright>Copyright © 2015 Souvik Dey Chowdhury</Copyright>
+    <AssemblyTitle>Aadhaar API for .NET Tests</AssemblyTitle>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <Authors>Souvik Dey Chowdhury</Authors>
+    <TargetFramework>net46</TargetFramework>
+    <AssemblyName>Uidai.Aadhaar.Tests</AssemblyName>
+    <PackageId>Uidai.Aadhaar.Tests</PackageId>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <PackageTags>UIDAI;Aadhaar;Tests</PackageTags>
+    <PackageIconUrl>https://cdn.rawgit.com/souvikdc9/aadhaarapi.net/master/Logo/NuGet.png</PackageIconUrl>
+    <PackageProjectUrl>http://souvikdc9.github.io/aadhaarapi.net</PackageProjectUrl>
+    <PackageLicenseUrl>http://www.gnu.org/licenses/lgpl.html</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/souvikdc9/aadhaarapi.net.git</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="Data\**;Key\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Uidai.Aadhaar\Uidai.Aadhaar.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0-preview-20170106-08" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0-beta5-build1225" />
+    <PackageReference Include="xunit" Version="2.2.0-beta5-build3474" />
+  </ItemGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+</Project>

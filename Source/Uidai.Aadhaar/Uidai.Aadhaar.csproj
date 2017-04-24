@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net46;netstandard1.3</TargetFrameworks>
+    <Product>Aadhaar API for .NET</Product>
+    <Version>0.8.6</Version>
+    <Authors>Souvik Dey Chowdhury</Authors>
+    <Copyright>Copyright © 2015 Souvik Dey Chowdhury</Copyright>
+    <Description>A client library that provides an easy way to interact with the UIDAI Aadhaar services.</Description>
+
+    <PackageIconUrl>https://cdn.rawgit.com/souvikdc9/aadhaarapi.net/master/Images/NuGet.png</PackageIconUrl>
+    <PackageLicenseUrl>http://www.gnu.org/licenses/lgpl.html</PackageLicenseUrl>
+    <PackageProjectUrl>http://souvikdc9.github.io/aadhaarapi.net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/souvikdc9/aadhaarapi.net.git</RepositoryUrl>
+    <PackageTags>UIDAI Aadhaar Auth BFD OTP e-KYC</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net46'">
+    <PackageReference Include="BouncyCastle" Version="1.8.1" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+
+</Project>

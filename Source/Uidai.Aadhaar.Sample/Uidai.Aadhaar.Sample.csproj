@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net46</TargetFramework>
+    <Authors>Souvik Dey Chowdhury</Authors>
+    <Company />
+    <Product>Aadhaar API for .NET Sample</Product>
+    <Description>A sample for using the Uidai.Aadhaar class library.</Description>
+    <PackageProjectUrl>http://souvikdc9.github.io/aadhaarapi.net</PackageProjectUrl>
+    <PackageIconUrl>https://cdn.rawgit.com/souvikdc9/aadhaarapi.net/master/Logo/NuGet.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/souvikdc9/aadhaarapi.net.git</RepositoryUrl>
+    <PackageTags>UIDAI Aadhaar Console Sample</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Uidai.Aadhaar\Uidai.Aadhaar.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Key\**;appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

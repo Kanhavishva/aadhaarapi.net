@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core Launch (console)",
+      "type": "clr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceRoot}/Source/Uidai.Aadhaar.Sample/bin/Debug/net46/Uidai.Aadhaar.Sample.exe",
+      "cwd": "${workspaceRoot}/Source/Uidai.Aadhaar.Sample/bin/Debug/net46",
+      "console": "integratedTerminal",
+      "logging": {
+        "moduleLoad": false
+      }
+    }
+  ]
+}

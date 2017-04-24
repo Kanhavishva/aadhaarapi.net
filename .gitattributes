@@ -1,9 +1,9 @@
-* text=auto
+*           text=auto
 
-*.cs diff=csharp
+*.cs        diff=csharp
+*.sln       merge=union
+*.csproj    merge=union
 
-*.cer binary
-*.p12 binary
-*.pdf binary
-*.png binary
-*.svg binary
+*.cer       binary
+*.png       binary
+*.svg       binary

@@ -1,22 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{43814E6A-744E-45C1-A82C-7C0D29857E54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uidai.Aadhaar", "Uidai.Aadhaar\Uidai.Aadhaar.csproj", "{E6ED3061-0E3A-4B54-8F47-FD73071BF5BA}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C575F016-356E-4F6A-9192-673F44435C9E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DD76D611-7A80-4572-84EA-F90FE8011AB8}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Uidai.Aadhaar", "src\Uidai.Aadhaar\Uidai.Aadhaar.xproj", "{5A2E35FD-38A3-4E30-AB72-FDE94FEE2300}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Uidai.Aadhaar.Sample", "src\Uidai.Aadhaar.Sample\Uidai.Aadhaar.Sample.xproj", "{C78E879D-1829-4F2E-B664-7096E28D0992}"
-EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Uidai.Aadhaar.Tests", "test\Uidai.Aadhaar.Tests\Uidai.Aadhaar.Tests.xproj", "{F484FB31-26AF-4F0A-93F4-7E45F62C0C85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Uidai.Aadhaar.Sample", "Uidai.Aadhaar.Sample\Uidai.Aadhaar.Sample.csproj", "{DCDA19E0-35A6-431F-9BE1-B8FCA1C8385C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,25 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5A2E35FD-38A3-4E30-AB72-FDE94FEE2300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A2E35FD-38A3-4E30-AB72-FDE94FEE2300}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A2E35FD-38A3-4E30-AB72-FDE94FEE2300}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A2E35FD-38A3-4E30-AB72-FDE94FEE2300}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C78E879D-1829-4F2E-B664-7096E28D0992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C78E879D-1829-4F2E-B664-7096E28D0992}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C78E879D-1829-4F2E-B664-7096E28D0992}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C78E879D-1829-4F2E-B664-7096E28D0992}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F484FB31-26AF-4F0A-93F4-7E45F62C0C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F484FB31-26AF-4F0A-93F4-7E45F62C0C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F484FB31-26AF-4F0A-93F4-7E45F62C0C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F484FB31-26AF-4F0A-93F4-7E45F62C0C85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6ED3061-0E3A-4B54-8F47-FD73071BF5BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6ED3061-0E3A-4B54-8F47-FD73071BF5BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6ED3061-0E3A-4B54-8F47-FD73071BF5BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6ED3061-0E3A-4B54-8F47-FD73071BF5BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCDA19E0-35A6-431F-9BE1-B8FCA1C8385C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCDA19E0-35A6-431F-9BE1-B8FCA1C8385C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCDA19E0-35A6-431F-9BE1-B8FCA1C8385C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCDA19E0-35A6-431F-9BE1-B8FCA1C8385C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{5A2E35FD-38A3-4E30-AB72-FDE94FEE2300} = {43814E6A-744E-45C1-A82C-7C0D29857E54}
-		{C78E879D-1829-4F2E-B664-7096E28D0992} = {43814E6A-744E-45C1-A82C-7C0D29857E54}
-		{F484FB31-26AF-4F0A-93F4-7E45F62C0C85} = {C575F016-356E-4F6A-9192-673F44435C9E}
 	EndGlobalSection
 EndGlobal
