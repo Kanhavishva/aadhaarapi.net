@@ -3,6 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net46</TargetFramework>
+    <Product>Aadhaar API for .NET Sample</Product>
+    <Version>0.1.0-beta</Version>
     <Authors>Souvik Dey Chowdhury</Authors>
     <Company />
     <Product>Aadhaar API for .NET Sample</Product>

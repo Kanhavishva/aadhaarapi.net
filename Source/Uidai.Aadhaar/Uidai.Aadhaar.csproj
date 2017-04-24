@@ -3,10 +3,19 @@
   <PropertyGroup>
     <TargetFrameworks>net46;netstandard1.3</TargetFrameworks>
     <Product>Aadhaar API for .NET</Product>
-    <Version>0.8.6</Version>
+    <Version>0.8.6-beta</Version>
     <Authors>Souvik Dey Chowdhury</Authors>
     <Copyright>Copyright © 2015 Souvik Dey Chowdhury</Copyright>
-    <Description>A client library that provides an easy way to interact with the UIDAI Aadhaar services.</Description>
+    <Description>
+      A client library that provides an easy way to interact with the UIDAI Aadhaar services.
+      THIS IS AN UNOFFICIAL PACKAGE.
+
+      Supported API:
+      Authentication API 1.6
+      Best Finger Detection API 1.6
+      One Time Pin API 1.6
+      e-Know Your Customer API 1.0
+    </Description>
 
     <PackageIconUrl>https://cdn.rawgit.com/souvikdc9/aadhaarapi.net/master/Images/NuGet.png</PackageIconUrl>
     <PackageLicenseUrl>http://www.gnu.org/licenses/lgpl.html</PackageLicenseUrl>
