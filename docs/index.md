@@ -1,8 +1,3 @@
----
-layout: post
-title: Aadhaar API for .NET
----
-
 ## Authentication Service
 Aadhaar authentication is the process wherein Aadhaar Number, along with other attributes, including biometrics, are submitted online to the CIDR for its verification on the basis of information available with it.
 
