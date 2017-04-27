@@ -1,1 +1,6 @@
 theme: jekyll-theme-cayman
+title: Aadhaar API for .NET
+description: A client library that provides an easy way to interact with the UIDAI Aadhaar services.
+google_analytics: UA-98175937-1
+nuget_url: https://www.nuget.org/packages/Uidai.Aadhaar
+uidai_url: https://authportal.uidai.gov.in/web/uidai/developer

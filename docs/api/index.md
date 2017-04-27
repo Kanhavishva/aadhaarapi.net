@@ -1,2 +1,0 @@
-# Aadhaar API for .NET Reference
-These documents cover the API reference for Uidai.Aadhaar. You can use the search function on the left-hand side to search for an API or use the Table of Contents on the left to navigate.
