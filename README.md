@@ -7,6 +7,9 @@ For details on how to use it, please visit the **[PROJECT HOME](http://souvikdc9
 ## Questions & Feedback
 [![Join the chat at https://gitter.im/souvikdc9/aadhaarapi.net](https://badges.gitter.im/souvikdc9/aadhaarapi.net.svg)](https://gitter.im/souvikdc9/aadhaarapi.net?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+## Other Platforms
+- [Aadhaar API for Java](https://github.com/souvikdc9/aadhaarapi.java)
+
 ## Copyright & License
 Copyright © 2015 Souvik Dey Chowdhury
 
